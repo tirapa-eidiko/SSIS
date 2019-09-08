@@ -1,0 +1,1678 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/7/2019 12:25:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KOTESH"
+  DTS:CreatorName="KOTESH\Administrator"
+  DTS:DTSID="{10D99D35-CDCD-47E7-808A-1C8960518103}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LdgToStg_SalesForce_CustomerIdentity"
+  DTS:PackageType="5"
+  DTS:VersionBuild="34"
+  DTS:VersionGUID="{2C3C4777-07B1-4536-9F09-8D7354986F26}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.ETLLOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{64F79E7F-AD8F-4979-AFBA-7DAA993FE95A}"
+      DTS:ObjectName="Kotesh.ETLLOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=ETLLOG;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.Landing]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{7744E3D8-257E-4892-A334-E90A61C26572}"
+      DTS:ObjectName="Kotesh.Landing">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=Landing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.Landing 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{49681164-A77E-4FB8-AF8D-114BFE8874EE}"
+      DTS:ObjectName="Kotesh.Landing 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=Landing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.Landing 2]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CC99BC75-7792-433F-BBC3-802CAF4280D3}"
+      DTS:ObjectName="Kotesh.Landing 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=Landing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.Landing 3]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{EFB1D94E-53B3-4251-BC82-E1B8E89CDEB9}"
+      DTS:ObjectName="Kotesh.Landing 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=Landing;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{93DADA97-30AE-4149-9AC1-B7B1679E9F59}"
+      DTS:ObjectName="Kotesh.STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.EDWSTGLOGDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.EDWSTGLOGDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{253923D5-F1FC-4C1C-B830-2145078DE93D}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F2B52B31-F992-4E54-9764-96F5E974FBEC}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F5E5D78-F999-4759-B4DE-D64FBDD57D48}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9ED8D5D8-0068-4C39-AB63-A3D5B4B07F27}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Id">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D938AF71-6481-4987-892A-F06333A7FA61}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{F4860301-DC06-4451-82AC-A15CAF69D0E6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8">LDG_SALESFORCEUSERS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB58A833-DBC7-4906-9D0C-2217829321B2}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8">INPROCESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_TB_Src_Cust_Id"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{858EB7D0-7D73-4643-97AF-D92A0DD54AD5}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_TB_Src_Cust_Id"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{EAF2313E-64A1-4470-AF07-E6F41B3800B5}"
+          DTS:EventID="456471060"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{99A2F673-6C2D-4904-B143-73E609B20A34}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{916b7d5f-4295-4726-9f1d-c5d9104dfe07}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_Change_Status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{0095b9a2-a99d-418f-9119-c6ca3bef68a1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?,?,?,?,GETDATE())&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{19c9b182-5f5f-4328-95a1-fe3583bb2ed3}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_UpdateSessionID">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN&#xA; SET&#xA;  [SESSION_STATUS_UPD_TS] = GETDATE()&#xA;  ,[SESSION_STATUS]='Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{1bf8ecd7-9502-428e-89b0-62639784830f}"
+              DTS:From="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_UpdateSessionID" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{46620165-cd0d-444c-9541-922780c2cfc5}"
+              DTS:From="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_InsertErrorCount">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ErrorCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Cust_Id\Count_Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count_Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Cust_Id\Count_Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\Count_Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_TB_Src_Cust_Id\Count_Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Cust_Id\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Inputs[Data Conversion Input].Columns[IdNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="IdNumber"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IdNumber]"
+                      name="Copy of IdNumber"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdNumber]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DST_TB_Insert_Src_Cust_Id"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_CustomerIdentity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[STARTDT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STARTDT"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[STARTDT]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[STARTDT]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[ENDDT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ENDDT"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[ENDDT]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[ENDDT]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[IdDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="IdDescription"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdDescription]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdDescription]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[IdExpiryDt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="IdExpiryDt"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdExpiryDt]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].Columns[Copy of IdNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of IdNumber"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdNumber]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of IdNumber]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="480"
+                      name="IdDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdIssueLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="IdIssueLocation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      name="IdExpiryDt" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      name="STARTDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      name="ENDDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_SRC_TB_Src_Cust_Id"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[LDG_SALESFORCEUSERS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+      [LeadNumber__c] AS SourceCustomerId
+	  ,'SALESFORCE' AS SourceSystemName
+	  , CASE
+	   WHEN  [PassportNumber__c] IS NOT NULL THEN [PassportNumber__c]
+	   WHEN  [VisaNumber__c] IS NOT NULL THEN [VisaNumber__c]
+	   ELSE NULL
+	   END AS [IdNumber]
+	  ,CASE
+	   WHEN  [PassportNumber__c] IS NOT NULL THEN 'Passport'
+	   WHEN  [VisaNumber__c] IS NOT NULL THEN 'Visa'
+	   ELSE NULL
+	   END AS [IdDescription]
+	   ,CASE
+	   WHEN  [PassportNumber__c] IS NOT NULL THEN [PassportExpiryDate__c]
+	   WHEN  [VisaNumber__c] IS NOT NULL THEN [VisaExpiryDate__c]
+	   ELSE NULL
+	   END AS IdExpiryDt
+      ,CASE
+	   WHEN  [PassportNumber__c] IS NOT NULL THEN [PassportExpiryDate__c]
+	   WHEN  [VisaNumber__c] IS NOT NULL THEN [VisaExpiryDate__c]
+	   ELSE NULL 
+	   END AS STARTDT
+	  ,CASE
+	   WHEN  [PassportNumber__c] IS NOT NULL THEN [PassportExpiryDate__c]
+	   WHEN  [VisaNumber__c] IS NOT NULL THEN [VisaExpiryDate__c]
+	   ELSE NULL
+	   END AS  ENDDT
+	  FROM [LANDING].[dbo].[LDG_SALESFORCE_USERS]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      length="10"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[STARTDT]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[STARTDT]"
+                      name="STARTDT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[ENDDT]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[ENDDT]"
+                      name="ENDDT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdDescription]"
+                      length="8"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdDescription]"
+                      name="IdDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      length="1024"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      name="IdNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdExpiryDt]"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]"
+                      name="IdExpiryDt"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      dataType="i8"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      name="ENDDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      name="STARTDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="IdDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output].ExternalColumns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      name="IdExpiryDt" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      name="IdNumber" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdExpiryDt]"
+                      name="IdExpiryDt" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[STARTDT]"
+                      name="STARTDT" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[ENDDT]"
+                      name="ENDDT" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Error Output].Columns[IdDescription]"
+                      name="IdDescription" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_TB_Src_Cust_Id.Paths[Data Conversion Output]"
+              endId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Cust_Id.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Cust_Id.Paths[OLE DB Source Output]"
+              endId="Package\DFT_TB_Src_Cust_Id\Count_Row.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Cust_Id.Paths[Row Count Output 1]"
+              endId="Package\DFT_TB_Src_Cust_Id\Data Conversion.Inputs[Data Conversion Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_TB_Src_Cust_Id\Count_Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{E353C80C-EAA1-4525-9D70-51283E01E0F4}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Expression Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{B6EAE1B5-D602-4063-A043-52949BC42489}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{B03FC0E4-A995-403B-987D-B3B85ACACB6A}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{7F0CB3C8-7395-4A57-A65E-BCE69B30B0DC}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Execute SQL Task"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{64F79E7F-AD8F-4979-AFBA-7DAA993FE95A}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_Run]&#xA;   SET &#xA;       [SESSION_STATUS_UPD_TS] =GETDATE()&#xA;      ,[SESSION_STATUS] = 'Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::Id"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task 1"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{3C4C3FEF-E182-4188-BE0F-496CD739B3C5}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Execute SQL Task 1"
+              DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{64F79E7F-AD8F-4979-AFBA-7DAA993FE95A}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           ,GETDATE()&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::Id"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Expression Task.EventHandlers[OnError]\Expression Task"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{ACE1C4AC-D780-4EFA-80AF-FFF195C768AA}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Expression Task"
+              DTS:TaskContact="Expression Task;Microsoft Corporation; SQL Server 2012; � 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Expression Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{5D7286CB-37D6-485A-97A7-8CDEA1E641DF}"
+              DTS:From="Package\Expression Task.EventHandlers[OnError]\Expression Task"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Expression Task.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{3D5CCEF3-39B5-4E10-AFB9-8694C82269F7}"
+              DTS:From="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task 1" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL session audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9D6D1237-9443-4408-91B3-2691317559F9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL session audit"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[SOURCE_SYSTEM]&#xA;           ,[SOURCE_KEY_COUNT]&#xA;           ,[ETL_SOURCE_REJ_COUNT]&#xA;           )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Sql Session End"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{719071E6-D64D-4E95-8315-613BAFF3ADFB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sql Session End"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_RUN]&#xA;   SET &#xA;       [SESSION_STATUS_UPD_TS] = GETDATE()&#xA;      ,[SESSION_STATUS] = ?&#xA; WHERE ETL_SESSION_ID=?&#xA;&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::Id"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{C35D10A9-CC94-4336-8A00-D474917519B5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_start"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_start.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{A0EA4A83-9E89-46D6-A4F1-12FF120F9BF5}"
+          DTS:EventID="457504252"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{4112C013-969D-45B3-ADE8-0CDE541F74A1}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{9F08C546-3F4A-4533-BBB5-57AFABFF739C}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Run]&#xA;           (&#xA;      [ETL_EXECUTION_ID]&#xA;           ,[ETL_JOB_NAME]&#xA;           ,[SESSION_STATUS]&#xA;     ,[SESSION_START_TS]&#xA;     )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;     ,?&#xA;     ,?&#xA;     ,GETDATE()&#xA;   )&#xA;&#xA;SELECT @@IDENTITY AS Id"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ID"
+            SQLTask:DtsVariableName="User::Id" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{431F3E88-2A91-4320-8A41-83757DC858A5}"
+      DTS:From="Package\SQL_Session_start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_TB_Src_Cust_Id" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{B64C5ED0-A191-4071-A8BD-6BC41F94E80D}"
+      DTS:From="Package\DFT_TB_Src_Cust_Id"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{EB4A6494-6D63-4843-AF2D-42E25FB28CC8}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Sql Session End" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{86DD8651-0E82-43AE-B2FE-6890C108891C}"
+      DTS:From="Package\Sql Session End"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL session audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="179,42"
+          Id="Package\DFT_TB_Src_Cust_Id"
+          TopLeft="68,156" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="67,240" />
+        <NodeLayout
+          Size="162,42"
+          Id="Package\SQL session audit"
+          TopLeft="60,420" />
+        <NodeLayout
+          Size="153,42"
+          Id="Package\Sql Session End"
+          TopLeft="63,323" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SQL_Session_start"
+          TopLeft="62,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="145,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,54"
+              Start="0,0"
+              End="12.5,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23"
+                    Point2="0,27"
+                    Point3="4,27" />
+                  <mssgle:LineSegment
+                    End="8.5,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,27"
+                    Point2="12.5,27"
+                    Point3="12.5,31" />
+                  <mssgle:LineSegment
+                    End="12.5,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="157.5,198">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13,42"
+              Start="0,0"
+              End="-13,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17"
+                    Point2="0,21"
+                    Point3="-4,21" />
+                  <mssgle:LineSegment
+                    End="-9,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9,21"
+                    Point2="-13,21"
+                    Point3="-13,25" />
+                  <mssgle:LineSegment
+                    End="-13,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="142,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,41"
+              Start="0,0"
+              End="0,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="140.25,365">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_TB_Src_Cust_Id">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT_TB_Src_Cust_Id\Count_Row"
+          TopLeft="286,181" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id"
+          TopLeft="281,87" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT_TB_Src_Cust_Id\Data Conversion"
+          TopLeft="270,252" />
+        <NodeLayout
+          Size="251,42"
+          Id="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id"
+          TopLeft="259,328" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DFT_TB_Src_Cust_Id\CNT_InsertErrorCount"
+          TopLeft="293,422" />
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.Paths[Row Count Output 1]"
+          TopLeft="350.25,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29"
+              Start="0,0"
+              End="0,21.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.Paths[OLE DB Source Output]"
+          TopLeft="389.5,129">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-37,52"
+              Start="0,0"
+              End="-37,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-33,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-33,26"
+                    Point2="-37,26"
+                    Point3="-37,30" />
+                  <mssgle:LineSegment
+                    End="-37,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.Paths[OLE DB Destination Error Output]"
+          TopLeft="384.5,370">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-73.20890625,16.533203125,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.Paths[Data Conversion Output]"
+          TopLeft="348,294">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36.5,34"
+              Start="0,0"
+              End="36.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="32.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32.5,17"
+                    Point2="36.5,17"
+                    Point3="36.5,21" />
+                  <mssgle:LineSegment
+                    End="36.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\EXPR_Change_Status"
+          TopLeft="60,61" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="500,60" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+          TopLeft="291,61" />
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="240,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,0"
+              Start="0,0"
+              End="43.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Cust_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="475,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25,0"
+              Start="0,0"
+              End="17.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_TB_Src_Cust_Id\OLEDB_SRC_TB_Src_Cust_Id">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_TB_Src_Cust_Id\OLEDB_DST_TB_Insert_Src_Cust_Id">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Expression Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task"
+          TopLeft="244.166666666667,65.833333333333" />
+        <NodeLayout
+          Size="172,42"
+          Id="Package\Expression Task.EventHandlers[OnError]\Execute SQL Task 1"
+          TopLeft="459.166666666667,70" />
+        <NodeLayout
+          Size="132,42"
+          Id="Package\Expression Task.EventHandlers[OnError]\Expression Task"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package\Expression Task.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="192,83.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.1666666666666,0"
+              Start="0,0"
+              End="44.6666666666666,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.6666666666666,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Expression Task.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="407.166666666667,88.916666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52,0"
+              Start="0,0"
+              End="44.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="44.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

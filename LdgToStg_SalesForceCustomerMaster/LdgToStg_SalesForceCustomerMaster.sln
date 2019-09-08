@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "LdgToStg_SalesForceCustomerMaster", "LdgToStg_SalesForceCustomerMaster\LdgToStg_SalesForceCustomerMaster.dtproj", "{1E199F84-2E55-49E4-95E5-18227B63FB25}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E199F84-2E55-49E4-95E5-18227B63FB25}.Development|Default.ActiveCfg = Development
+		{1E199F84-2E55-49E4-95E5-18227B63FB25}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE2983AC-9A35-46B8-9FFA-FCF15E565DEE}
+	EndGlobalSection
+EndGlobal
