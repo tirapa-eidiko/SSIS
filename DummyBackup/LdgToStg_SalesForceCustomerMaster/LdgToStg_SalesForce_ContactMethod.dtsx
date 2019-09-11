@@ -1,0 +1,2618 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2019 9:06:53 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="RAGHU"
+  DTS:CreatorName="RAGHU\Administrator"
+  DTS:DTSID="{51B0BA45-2D2F-40DA-AE95-CE76B763F553}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LdgToStg_SalesForce_ContactMethod"
+  DTS:PackageType="5"
+  DTS:VersionBuild="99"
+  DTS:VersionGUID="{9C0C6901-2810-4F23-BBA2-DB0B4EF0C1DC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{01C303B1-EF5B-450B-AFC3-F1DEEBF039B1}"
+      DTS:ObjectName="OLEDB_LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+      DTS:ObjectName="OLEDB_LOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{394E41E7-B0FC-4EB7-B91C-E3E370FADC88}"
+      DTS:ObjectName="OLEDB_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{2C5CFC50-4C50-4EEA-8744-7F0183AFD870}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{71C3647E-A6D2-40B0-B38C-A0D9B8526D58}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="HasBothModes">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{75E85C72-074F-49E3-AA26-78D655E37B7C}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A4968595-3AF6-4920-BAD0-C58B66513CBE}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{649579E2-20FC-4806-AEE8-161AEF6D0D33}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8">SalesForceUsers</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{06910AA7-E5A2-4FD9-9415-65CF37025303}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8">INPROCESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_SalesForce_Src_ContMeth"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{F5AAA885-23FB-4FB4-936D-20405325D03D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_SalesForce_Src_ContMeth">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{9A4F0508-477B-497A-9F8F-BC6F0CCE2A4C}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{CDE5B9DA-7BD5-4C72-88C4-A4DF71D59C52}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\EXPR_change_status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{3ffffb64-d6d0-4e1a-a4e0-a5db8666479b}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_change_status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{dc6a0250-93ca-4755-b9d2-81a98b04d65f}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           ,GETDATE()&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{08256c6d-37c2-49f1-afbf-560f0099efb5}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Update_Session">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_Run]&#xA;   SET &#xA;       [SESSION_STATUS_UPD_TS] =GETDATE()&#xA;      ,[SESSION_STATUS] = 'Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{93b11a03-ca3e-4814-b7b1-a3a0fcb139c9}"
+              DTS:From="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\EXPR_change_status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Update_Session" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{7cd7b8bd-99f0-41cc-8c1d-b239b51bd5c0}"
+              DTS:From="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_InsertErrorCount">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ErrorCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_InsertErrorCount1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ErrorCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count_Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\Count_Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count_Row1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV_ContMeth"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input].Columns[AreaCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="AreaCode"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input].Columns[ContactMethodValue]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="ContactMethodValue"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodValue]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of AreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of AreaCode]"
+                      name="Copy of AreaCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of ContactMethodValue]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of ContactMethodValue]"
+                      name="Copy of ContactMethodValue"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodValue]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLEDB_DST_SalesForce_TB_Insert_ContMeth"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">
+INSERT INTO [dbo].[STG_CustomerContactMethod]
+           ([SourceCustomerId]
+           ,[SourceSystemName]
+           ,[ContactMethodCategory]
+           ,[ContactMethodType]
+           ,[ContactMethodValue]
+          
+,[AreaCode])
+     VALUES
+           (?
+           ,?
+           ,?
+           ,?
+           ,?
+           ,?) 
+
+INSERT INTO [dbo].[STG_CustomerContactMethod]
+           ([SourceCustomerId]
+           ,[SourceSystemName]
+           ,[ContactMethodCategory]
+           ,[ContactMethodType]
+           ,[ContactMethodValue]
+    
+,[AreaCode])
+     VALUES
+           (?
+           ,?
+           ,?
+           ,?
+           ,?
+           ,?)
+</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[AreaCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="AreaCode"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[SourceCustomerId1]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId1"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId1]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[SourceSystemName1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SourceSystemName1"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName1]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[AreaCode1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="AreaCode1"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode1]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[MobilePhone]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="MobilePhone"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[MobilePhone]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[Email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Email"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Email]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[PhoneCategory]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="PhoneCategory"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneCategory]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[PhoneMethodType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="PhoneMethodType"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneMethodType]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[EmailMethodType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="13"
+                      cachedName="EmailMethodType"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailMethodType]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].Columns[EmailCategory]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="13"
+                      cachedName="EmailCategory"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailCategory]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_6]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="Param_6">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_7]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_8]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Param_8">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_9]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="Param_9">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_10]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Param_10">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input].ExternalColumns[Param_11]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_11">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DST_SalesForce_TB_Insert_ContMeth2"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_CustomerContactMethod]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[ContactMethodCategory]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ContactMethodCategory"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodCategory]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodCategory]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[ContactMethodType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="16"
+                      cachedName="ContactMethodType"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodType]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodType]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[Copy of AreaCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Copy of AreaCode"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[AreaCode]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of AreaCode]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].Columns[Copy of ContactMethodValue]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="Copy of ContactMethodValue"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodValue]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output].Columns[Copy of ContactMethodValue]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="ContactMethodCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="ContactMethodType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[ContactMethodValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="ContactMethodValue" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[CountryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="CountryCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input].ExternalColumns[AreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AreaCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+              name="OLEDB_SaleForce_CustMeth_CS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]"
+                  description="Input to the Conditional Split Transformation"
+                  name="Conditional Split Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input].Columns[HasBothModes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="HasBothModes"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[HasBothModes]" />
+                    <inputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input].Columns[Both]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="Both"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Both]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[HasBoth]"
+                  description="Output 1 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="HasBoth"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[HasBothModes]} == #{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Both]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">HasBothModes == Both</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[HasNotBoth]"
+                  description="Output 2 of the Conditional Split Transformation"
+                  errorOrTruncationOperation="Computation"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="HasNotBoth"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                      name="Expression">#{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[HasBothModes]} != #{Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Both]}</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the friendly version of the expression. This expression version uses column names."
+                      expressionType="Notify"
+                      name="FriendlyExpression">HasBothModes != Both</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Default Output]"
+                  description="Default Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  name="Conditional Split Default Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Error Output]"
+                  description="Error Output of the Conditional Split Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Conditional Split Error Output"
+                  synchronousInputId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_SRC_SalesForce_TB_ContMeth"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+      [Area_Code__c] AS AreaCode
+     ,[LeadNumber__c] AS SourceCustomerId
+     ,'SALESFORCE' AS SourceSystemName
+	  ,CASE 
+	   WHEN [MobilePhone] IS NOT NULL AND [Email] IS NULL THEN 'Telephone Number'
+	   WHEN [MobilePhone] IS NULL AND [Email] IS NOT NULL THEN 'EMAIL'
+	   WHEN [MobilePhone] IS NOT NULL THEN 'Telephone Number'
+	   WHEN [Email] IS NOT NULL THEN 'Email Address'
+	   ELSE null
+	   END AS ContactMethodCategory
+	   ,CASE 
+	   WHEN [MobilePhone] IS NOT NULL AND [Email] IS NULL THEN 'Mobile Telephone'
+	   WHEN [MobilePhone] IS NULL AND [Email] IS NOT NULL THEN 'Primary Email'
+	   WHEN [MobilePhone] IS NOT NULL THEN 'Mobile Telephone'
+	   WHEN [Email] IS NOT NULL THEN 'Primary Email'
+	   ELSE null
+	   END AS ContactMethodType
+	   ,CASE
+	   WHEN [MobilePhone] IS NOT NULL AND [Email] IS NULL THEN [MobilePhone]
+	   WHEN [MobilePhone] IS NULL AND [Email] IS NOT NULL THEN [Email]
+	   WHEN [MobilePhone] IS NOT NULL THEN [MobilePhone]
+	   WHEN [Email] IS NOT NULL THEN [Email]
+	   ELSE null
+	   END AS ContactMethodValue
+	  ,[Area_Code__c] AS AreaCode1
+     ,[LeadNumber__c] AS SourceCustomerId1
+     ,'SALESFORCE' AS SourceSystemName1
+	  ,CASE 
+	   WHEN [MobilePhone] IS NOT NULL AND [Email] IS NULL THEN 'Telephone Number'
+	   WHEN [MobilePhone] IS NULL AND [Email] IS NOT NULL THEN 'EMAIL'
+	   WHEN [MobilePhone] IS NOT NULL THEN 'Telephone Number'
+	   WHEN [Email] IS NOT NULL THEN 'Email Address'
+	   ELSE null
+	   END AS ContactMethodCategory1
+	   ,CASE 
+	   WHEN [MobilePhone] IS NOT NULL AND [Email] IS NULL THEN 'Mobile Telephone'
+	   WHEN [MobilePhone] IS NULL AND [Email] IS NOT NULL THEN 'Primary Email'
+	   WHEN [MobilePhone] IS NOT NULL THEN 'Mobile Telephone'
+	   WHEN [Email] IS NOT NULL THEN 'Primary Email'
+	   ELSE null
+	   END AS ContactMethodType1
+	   ,CASE
+	    WHEN [MobilePhone] IS NOT NULL AND [Email] IS NOT NULL THEN 'BOTH' 
+		WHEN [MobilePhone] IS NOT NULL THEN 'Phone'
+		WHEN [MobilePhone] IS NOT NULL THEN 'Email'
+		ELSE 'None'
+		END AS HasBothModes
+	 ,[MobilePhone] As MobilePhone
+	 ,[Email] AS Email 
+	 , 'Email Address' AS EmailCategory 
+	 , 'Telephone Number' AS  PhoneCategory
+	 , 'Primary Email' AS EmailMethodType
+	 , 'Mobile Telephone' AS PhoneMethodType
+	 ,'BOTH' As Both
+  FROM [Landing].[dbo].[LDG_SALESFORCE_USERS]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[AreaCode]"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode]"
+                      name="AreaCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      length="10"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodCategory]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodCategory]"
+                      name="ContactMethodCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodType]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodType]"
+                      name="ContactMethodType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodValue]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodValue]"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodValue]"
+                      name="ContactMethodValue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[AreaCode1]"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[AreaCode1]"
+                      name="AreaCode1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId1]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId1]"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceCustomerId1]"
+                      name="SourceCustomerId1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName1]"
+                      length="10"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[SourceSystemName1]"
+                      name="SourceSystemName1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodCategory1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodCategory1]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodCategory1]"
+                      name="ContactMethodCategory1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodType1]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodType1]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[ContactMethodType1]"
+                      name="ContactMethodType1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[HasBothModes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[HasBothModes]"
+                      length="5"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[HasBothModes]"
+                      name="HasBothModes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[MobilePhone]"
+                      length="255"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[MobilePhone]"
+                      name="MobilePhone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Email]"
+                      name="Email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[EmailCategory]"
+                      length="13"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailCategory]"
+                      name="EmailCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[PhoneCategory]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneCategory]"
+                      name="PhoneCategory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[EmailMethodType]"
+                      length="13"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[EmailMethodType]"
+                      name="EmailMethodType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[PhoneMethodType]"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[PhoneMethodType]"
+                      name="PhoneMethodType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Both]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[Both]"
+                      length="4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].Columns[Both]"
+                      name="Both"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[AreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="AreaCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      dataType="i8"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ContactMethodCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ContactMethodType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="ContactMethodValue" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[AreaCode1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="AreaCode1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId1]"
+                      dataType="i8"
+                      name="SourceCustomerId1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SourceSystemName1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodCategory1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ContactMethodCategory1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[ContactMethodType1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="ContactMethodType1" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[HasBothModes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="HasBothModes" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="MobilePhone" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Email" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[EmailCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      name="EmailCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[PhoneCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="PhoneCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[EmailMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      name="EmailMethodType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[PhoneMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="PhoneMethodType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output].ExternalColumns[Both]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="Both" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[AreaCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[AreaCode]"
+                      name="AreaCode" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodCategory]"
+                      name="ContactMethodCategory" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodType]"
+                      name="ContactMethodType" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodValue]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodValue]"
+                      name="ContactMethodValue" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[AreaCode1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[AreaCode1]"
+                      name="AreaCode1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId1]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId1]"
+                      name="SourceCustomerId1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceSystemName1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[SourceSystemName1]"
+                      name="SourceSystemName1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodCategory1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodCategory1]"
+                      name="ContactMethodCategory1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodType1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ContactMethodType1]"
+                      name="ContactMethodType1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[HasBothModes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[HasBothModes]"
+                      name="HasBothModes" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[MobilePhone]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[MobilePhone]"
+                      name="MobilePhone" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[Email]"
+                      name="Email" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[EmailCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[EmailCategory]"
+                      name="EmailCategory" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[PhoneCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[PhoneCategory]"
+                      name="PhoneCategory" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[EmailMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="13"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[EmailMethodType]"
+                      name="EmailMethodType" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[PhoneMethodType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[PhoneMethodType]"
+                      name="PhoneMethodType" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[Both]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[Both]"
+                      name="Both" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[Data Conversion Output]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[HasBoth]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\Count_Row.Inputs[Row Count Input 1]"
+              name="HasBoth"
+              startId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[HasBoth]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[HasNotBoth]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1.Inputs[Row Count Input 1]"
+              name="HasNotBoth"
+              startId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Outputs[HasNotBoth]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Command Error Output]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+              name="OLE DB Command Error Output"
+              startId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Outputs[OLE DB Command Error Output]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1.Inputs[Row Count Input 1]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Source Output]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS.Inputs[Conditional Split Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[Row Count Output 1]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth.Inputs[Data Conversion Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_SalesForce_Src_ContMeth\Count_Row1.Outputs[Row Count Output 1]" />
+            <path
+              refId="Package\DFT_SalesForce_Src_ContMeth.Paths[Row Count Output 11]"
+              endId="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth.Inputs[OLE DB Command Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_SalesForce_Src_ContMeth\Count_Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{A96F9FEC-42CE-4C3C-8CC2-E89D2E883257}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Expression Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{BA9BAF30-4F6F-437E-A5BC-64056FC5D6B1}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{4566F35D-7A8F-4AFF-88B0-576D7390BBD7}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Session end"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{264B721A-5878-4A6C-9A7C-09B5FE853E64}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Session end"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_RUN]&#xA;SET &#xA;[SESSION_STATUS_UPD_TS] = GETDATE()&#xA;,[SESSION_STATUS] = ?&#xA;WHERE ETL_SESSION_ID=?&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{05803F71-2E70-4352-AFE9-BE6423641861}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[SOURCE_SYSTEM]&#xA;           ,[SOURCE_KEY_COUNT]&#xA;           ,[ETL_SOURCE_REJ_COUNT]&#xA;           )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{64A0F163-D44F-41CB-96E5-332F52403108}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FEC742EB-658A-4598-A16C-6EE886A96528}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Run]&#xA;           (&#xA;      [ETL_EXECUTION_ID]&#xA;           ,[ETL_JOB_NAME]&#xA;           ,[SESSION_STATUS]&#xA;     ,[SESSION_START_TS]&#xA;     )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;     ,?&#xA;     ,?&#xA;     ,GETDATE()&#xA;     )&#xA;&#xA;&#xA;SELECT @@IDENTITY AS ID&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ID"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8870851F-9D7D-41BF-938B-B47330C57E51}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_SalesForce_Src_ContMeth" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{805497EF-2BA8-4F3C-8FD6-BB463DD2AF2A}"
+      DTS:From="Package\DFT_SalesForce_Src_ContMeth"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{6793613C-F35F-4B12-A3F4-EF5E6366CC33}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL Session end" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{AF5FA313-FB70-4F4A-A7B3-1FA6AFE493D3}"
+      DTS:From="Package\SQL Session end"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth"
+          TopLeft="315.5,186.5" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="301.5,283.5" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL Session end"
+          TopLeft="307,380" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="303.5,453.5" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="318.5,21.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="402,63.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26,123"
+              Start="0,0"
+              End="26,115.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,57.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,57.5"
+                    Point2="0,61.5"
+                    Point3="4,61.5" />
+                  <mssgle:LineSegment
+                    End="22,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22,61.5"
+                    Point2="26,61.5"
+                    Point3="26,65.5" />
+                  <mssgle:LineSegment
+                    End="26,115.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="428,228.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-49,55"
+              Start="0,0"
+              End="-49,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,23.5"
+                    Point2="0,27.5"
+                    Point3="-4,27.5" />
+                  <mssgle:LineSegment
+                    End="-45,27.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45,27.5"
+                    Point2="-49,27.5"
+                    Point3="-49,31.5" />
+                  <mssgle:LineSegment
+                    End="-49,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="382.25,325.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="386.75,422">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_SalesForce_Src_ContMeth">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="295,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth"
+          TopLeft="75,385" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\Count_Row1"
+          TopLeft="435,231" />
+        <NodeLayout
+          Size="261,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth"
+          TopLeft="318,0" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\Count_Row"
+          TopLeft="167,233" />
+        <NodeLayout
+          Size="231,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SaleForce_CustMeth_CS"
+          TopLeft="308,107" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount1"
+          TopLeft="433,485" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\CNT_InsertErrorCount"
+          TopLeft="176,491" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\DCNV_ContMeth"
+          TopLeft="434,296" />
+        <NodeLayout
+          Size="301,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2"
+          TopLeft="426,381" />
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Command Error Output]"
+          TopLeft="222.5,427">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45,64"
+              Start="0,0"
+              End="45,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28"
+                    Point2="0,32"
+                    Point3="4,32" />
+                  <mssgle:LineSegment
+                    End="41,32" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41,32"
+                    Point2="45,32"
+                    Point3="45,36" />
+                  <mssgle:LineSegment
+                    End="45,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.20890625,37,141.4178125,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[HasNotBoth]"
+          TopLeft="460.666666666667,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="43.8333333333334,82"
+              Start="0,0"
+              End="43.8333333333334,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.1384350816853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.1384350816853"
+                    Point2="0,33.1384350816853"
+                    Point3="4,33.1384350816853" />
+                  <mssgle:LineSegment
+                    End="39.8333333333334,33.1384350816853" />
+                  <mssgle:CubicBezierSegment
+                    Point1="39.8333333333334,33.1384350816853"
+                    Point2="43.8333333333334,33.1384350816853"
+                    Point3="43.8333333333334,37.1384350816853" />
+                  <mssgle:LineSegment
+                    End="43.8333333333334,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-4.47026692708332,38.1384350816853,52.7738671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[HasBoth]"
+          TopLeft="386.333333333333,149">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-152.833333333333,84"
+              Start="0,0"
+              End="-152.833333333333,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.9466895958727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.9466895958727"
+                    Point2="0,33.9466895958727"
+                    Point3="-4,33.9466895958727" />
+                  <mssgle:LineSegment
+                    End="-148.833333333333,33.9466895958727" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-148.833333333333,33.9466895958727"
+                    Point2="-152.833333333333,33.9466895958727"
+                    Point3="-152.833333333333,37.9466895958727" />
+                  <mssgle:LineSegment
+                    End="-152.833333333333,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-95.0836002604167,38.9466895958727,37.3338671875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[Data Conversion Output]"
+          TopLeft="512.5,338">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64,43"
+              Start="0,0"
+              End="64,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.5"
+                    Point2="0,21.5"
+                    Point3="4,21.5" />
+                  <mssgle:LineSegment
+                    End="60,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="60,21.5"
+                    Point2="64,21.5"
+                    Point3="64,25.5" />
+                  <mssgle:LineSegment
+                    End="64,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[Row Count Output 11]"
+          TopLeft="233.5,275">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11,110"
+              Start="0,0"
+              End="-11,102.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,51"
+                    Point2="0,55"
+                    Point3="-4,55" />
+                  <mssgle:LineSegment
+                    End="-7,55" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7,55"
+                    Point2="-11,55"
+                    Point3="-11,59" />
+                  <mssgle:LineSegment
+                    End="-11,102.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[Row Count Output 1]"
+          TopLeft="504.5,273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,23"
+              Start="0,0"
+              End="8,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.5"
+                    Point2="0,11.5"
+                    Point3="4,11.5" />
+                  <mssgle:LineSegment
+                    End="4,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,11.5"
+                    Point2="8,11.5"
+                    Point3="8,15.5" />
+                  <mssgle:LineSegment
+                    End="8,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Source Output]"
+          TopLeft="448.5,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-25,65"
+              Start="0,0"
+              End="-25,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="-4,32.5" />
+                  <mssgle:LineSegment
+                    End="-21,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-21,32.5"
+                    Point2="-25,32.5"
+                    Point3="-25,36.5" />
+                  <mssgle:LineSegment
+                    End="-25,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.Paths[OLE DB Destination Error Output]"
+          TopLeft="576.5,423">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-49,62"
+              Start="0,0"
+              End="-49,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27"
+                    Point2="0,31"
+                    Point3="-4,31" />
+                  <mssgle:LineSegment
+                    End="-45,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-45,31"
+                    Point2="-49,31"
+                    Point3="-49,35" />
+                  <mssgle:LineSegment
+                    End="-49,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-97.70890625,36,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\EXPR_change_status"
+          TopLeft="46,94" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="539,95" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError]\SQL_Update_Session"
+          TopLeft="302,94" />
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="223,115">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SalesForce_Src_ContMeth.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="480,115.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,0"
+              Start="0,0"
+              End="51.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SalesForce_Src_ContMeth\OLEDB_SRC_SalesForce_TB_ContMeth">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SalesForce_Src_ContMeth\OLEDB_DST_SalesForce_TB_Insert_ContMeth2">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <DtsEventHandler
+    design-time-name="Package\Expression Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="{850913C4-5F9D-4BAA-BA67-727DE4041755}"
+          TopLeft="162,50" />
+        <NodeLayout
+          Size="174,42"
+          Id="{7A3DADB1-28A3-4E73-B529-5AA724D1B27A}"
+          TopLeft="655,85" />
+        <NodeLayout
+          Size="178,42"
+          Id="{7883365E-A346-42EC-BBFE-7AA97DA67D89}"
+          TopLeft="401,68" />
+        <EdgeLayout
+          Id="{B7583FA9-E382-47B8-BD71-6CE1F3BF4A08}"
+          TopLeft="339,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,18"
+              Start="0,0"
+              End="54.5,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,0"
+                    Point2="31,0"
+                    Point3="31,4" />
+                  <mssgle:LineSegment
+                    End="31,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31,14"
+                    Point2="31,18"
+                    Point3="35,18" />
+                  <mssgle:LineSegment
+                    End="54.5,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{7D3A3B13-FFD3-4A58-82BB-4B8EAEC47272}"
+          TopLeft="579,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,17"
+              Start="0,0"
+              End="68.5,17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34,0"
+                    Point2="38,0"
+                    Point3="38,4" />
+                  <mssgle:LineSegment
+                    End="38,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38,13"
+                    Point2="38,17"
+                    Point3="42,17" />
+                  <mssgle:LineSegment
+                    End="68.5,17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,1723 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2019 10:03:54 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SSIS"
+  DTS:CreatorName="SSIS\Administrator"
+  DTS:DTSID="{81A34082-94EE-481B-8180-B7B907B2C2E3}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package2"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{8A96C0B8-1D95-4C5E-BAB8-E432F3EC4C37}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.EDWSTGLOGDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.EDWSTGLOGDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3C98B59A-9E10-4747-9C90-75DA5CD1FB79}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{706AA8CA-9EE9-476E-AE5A-4AD013F58203}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CREDS_ID">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A504A44F-3286-4E69-9374-33A3B7732B36}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{22AEC866-F45B-45C8-B27C-A91579773F2F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="PASSWORD">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{752189EC-6628-4056-8C03-BBF461D5DBF6}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D65AEBDD-825B-4B52-BE52-811FB6574667}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DD444EA8-07F9-4219-9294-C91F6935BF17}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{641A607C-355A-45E2-801B-58FE4EBB45DB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{74A87F73-1649-4BB5-BA3A-0B22A9A61B75}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="USERNAME">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{FD01D69D-A495-4FA8-AC84-7993902AE6FE}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Generate &amp; Store Session ID"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{afae21c2-1ac7-4003-87b8-94bf471bb66d}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Generate &amp; Store Session ID"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{87EB114E-1AC6-43C9-8FB9-C4E87EF44B44}"
+          DTS:EventID="7667825"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{690167DA-B8C6-45FD-BFF0-F40DA068DF54}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{b3f1d6a2-ff7f-42da-86ce-527f5025bf2d}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_Change_Status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{30e27e39-48b0-44b7-a8a7-92ba7343c777}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?,?,?,?,GETDATE())&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{c0e130b9-d9c9-4d7f-9ccb-372fe4b5111f}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_UpdateSessionID">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN&#xA; SET&#xA;  [SESSION_STATUS_UPD_TS] = GETDATE()&#xA;  ,[SESSION_STATUS]='Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{bf6b994c-da34-4b3e-afeb-125714b1a45a}"
+              DTS:From="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_UpdateSessionID" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Generate &amp; Store Session ID.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{475a9eda-2437-4cf4-9efb-b8a0029bd7fa}"
+              DTS:From="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="JSON Source (REST API or File); ZappySys LLC (c) All Rights Reserved; SSIS PowerPack; http://www.zappysys.com/support"
+              description="The JSON source is used to read data from JSON files, RESTful Web Service or direct JSON String."
+              name="Salesforce OAuth API Call"
+              usesDispositions="true"
+              version="32">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="LoggingMode determines how much information is logged during Package Execution. Set Logging mode to Debugging for maximum log."
+                  expressionType="Notify"
+                  name="LoggingMode"
+                  typeConverter="ZappySys.PowerPack.Common.LoggingMode, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you enable this property it will prefix timestamp before Log messages."
+                  expressionType="Notify"
+                  name="PrefixTimestamp">false</property>
+                <property
+                  dataType="System.Null"
+                  expressionType="Notify"
+                  name="SelfRef"
+                  typeConverter="NOTBROWSABLE" />
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for any numeric data types"
+                  expressionType="Notify"
+                  name="TreatBlankNumberAsNull">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for bool data types"
+                  expressionType="Notify"
+                  name="TreatBlankBoolAsNull">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Treat empty string as NULL for any date/time data types"
+                  expressionType="Notify"
+                  name="TreatBlankDateAsNull">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Encoding of source file"
+                  expressionType="Notify"
+                  name="Encoding"
+                  typeConverter="ZappySys.Common.EncodingType, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.String"
+                  description="Character set for text (e.g. utf-8 )"
+                  expressionType="Notify"
+                  name="CharacterSet"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Defines how to read the JSON file or direct string"
+                  expressionType="Notify"
+                  name="AccessMode"
+                  typeConverter="ZappySys.Common.Ssis.FileValueAccessMode, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.String"
+                  description="Defines how to read the JSON file or direct string"
+                  expressionType="Notify"
+                  name="DirectValue"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable name which holds JSON string"
+                  expressionType="Notify"
+                  name="ValueVariable"
+                  typeConverter="ZappySys.PowerPack.Converters.VariableEditor,ZappySys.PowerPack140.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502"></property>
+                <property
+                  dataType="System.String"
+                  description="Variable name which holds data file path or url"
+                  expressionType="Notify"
+                  name="PathVariable"
+                  typeConverter="ZappySys.PowerPack.Converters.VariableEditor,ZappySys.PowerPack140.UI,Version=1.0.0.0,Culture=neutral,PublicKeyToken=1903265a93eae502"></property>
+                <property
+                  dataType="System.String"
+                  description="JSON file file path (e.g. c:\data\myfile.json) or pattern to process multiple files (e.g. c:\data\*.json)"
+                  expressionType="Notify"
+                  name="DirectPath"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">https://lsdev-meraas.cs108.force.com/api/services/apexrest/login</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Include files from sub folders too."
+                  expressionType="Notify"
+                  name="Recursive">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default process stops with error if specified local file is not found. Set this property to true if you wish to continue rather than throwing file not found error."
+                  expressionType="Notify"
+                  name="ContinueOnFileNotFoundError">false</property>
+                <property
+                  dataType="System.String"
+                  description="Set this if you want to set custom Http headers. You may use variable anywhere in the header value using syntax {{User::YourVarName}}. Syntax of Header key value pair is : &amp;lt;request&amp;gt;&amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-1&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;AAA&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt; &amp;lt;header&amp;gt;&amp;lt;name&amp;gt;x-myheader-2&amp;lt;/name&amp;gt;&amp;lt;value&amp;gt;BBB&amp;lt;/value&amp;gt;&amp;lt;/header&amp;gt;&amp;lt;/request&amp;gt;"
+                  expressionType="Notify"
+                  name="HttpHeaders">&lt;request&gt;&lt;header&gt;&lt;name&gt;X-Device-OS&lt;/name&gt;&lt;value&gt;ios&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-Device-Model&lt;/name&gt;&lt;value&gt;simulator&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;Content-Type&lt;/name&gt;&lt;value&gt;application/json; charset=utf-8&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-Build-Number&lt;/name&gt;&lt;value&gt;1&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-Device-OS-Version&lt;/name&gt;&lt;value&gt;12.2&lt;/value&gt;&lt;/header&gt;&lt;header&gt;&lt;name&gt;X-App-Version&lt;/name&gt;&lt;value&gt;3.1&lt;/value&gt;&lt;/header&gt;&lt;/request&gt;</property>
+                <property
+                  dataType="System.String"
+                  description="User defined data you wish to send along with your HTTP Request (e.g. Upload file data, Form POST data). Usually you have to set content-type of your data but if you select RequestMethod=POST then system will automatically set content-type=application/x-www-form-urlencoded."
+                  expressionType="Notify"
+                  name="HttpRequestData">{
+"username":"{{User::USERNAME}}",
+"password":"{{User::PASSWORD}}"
+
+}</property>
+                <property
+                  dataType="System.String"
+                  description="Http Web Request Method (e.g. POST, GET, PUT, LIST, DELETE...). Refer your API documentation if you are not sure which method you have to use."
+                  expressionType="Notify"
+                  name="HttpRequestMethod">POST</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies content type for data you wish to POST. If you select Default option then system default content type will be used (i.e. application/x-www-form-urlencoded). If you specify Content-Type header along with this option then header value takes precedence."
+                  expressionType="Notify"
+                  name="HttpRequestContentType"
+                  typeConverter="ZappySys.Common.Web.HttpRequestContentType, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">2</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Check this option if you want to upload file(s) (i.e. POST RAW file data) or send data using Multi-Part encoding method (i.e. Content-Type: multipart/form-data). Multi-Part request allows you to mix key/value and upload files in same request. On the other hand raw upload allows only single file upload (without any key/value) &#xA;&#xA;==== Raw Upload (Content-Type: application/octet-stream) =====   &#xA;To upload single file in raw mode check this option and specify full file path starting with @ sign in the Body (e.g.  @c:\data\myfile.zip ) &#xA;&#xA;==== Form-Data / Multipart Upload (Content-Type: multipart/form-data) =====   &#xA;To treat your Request data as multi part fields you must specify key/value pairs separated by new lines into RequestData field (i.e. Body). Each key value pair is entered on new-line and key/value are separated using equal sign (=). Preceding and trailing spaces are ignored also blank lines are ignored. &#xA;If field value has some any special character(s) then use escape sequence (e.g. For NewLine: \r\n, For Tab: \t, For at (@): \@). When value of any field starts with at sign (@) its automatically treated as File you want to upload. File content type is determined based on extension.&#xA;See below Example of uploading multiple files along with additional fields.&#xA;&#xA;file1=@c:\data\Myfile1.txt&#xA;file2=@c:\data\Myfile2.txt&#xA;SomeField1=aaaaaaa&#xA;SomeField2=12345&#xA;SomeFieldWithNewLineAndTab=This is line1\r\nThis is line2\r\nThis is \ttab \ttab \ttab&#xA;SomeFieldStartingWithAtSign=\@MyTwitterId&#xA;"
+                  expressionType="Notify"
+                  name="IsMultiPartUpload">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Data format coming from HTTP Response. This is useful for example when you have OData service and you want to automatically consume all pages of data using odata.netUrl. Setting JsonFormat=Odata will automatically do it for you. This setting is only applicable if JSON is coming from HTTP WebRequest."
+                  expressionType="Notify"
+                  name="JsonFormat"
+                  typeConverter="ZappySys.Json.JsonFormat, ZappySys.Json, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable custom proxy settings (If this is not set then system default proxy will be used. To disable proxy totally uncheck this option and check DoNotUseDefaultProxy option if available)"
+                  expressionType="Notify"
+                  name="UseProxy">false</property>
+                <property
+                  dataType="System.String"
+                  description="Web URL of Proxy server (including port  if necessary). [e.g. http://myproxyserver:8080/]"
+                  expressionType="Notify"
+                  name="ProxyUrl"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable passing userid and password to proxy server"
+                  expressionType="Notify"
+                  name="UseProxyCreds">false</property>
+                <property
+                  dataType="System.String"
+                  description="Proxy username"
+                  expressionType="Notify"
+                  name="ProxyUserName"></property>
+                <property
+                  dataType="System.String"
+                  description="Proxy password"
+                  expressionType="Notify"
+                  name="ProxyPassword"></property>
+                <property
+                  dataType="System.String"
+                  description="If Service response support pagination using some sort of next url attribute then specify which attribute name in JSON Response string which holds next url. If no attribute found or its null then component will stop fetching next resultset. Example: $.pagingInfo.nextUrl"
+                  expressionType="Notify"
+                  name="NextUrlAttribute"></property>
+                <property
+                  dataType="System.String"
+                  description="If Service response support pagination using some sort of prev/next url attribute then specify which previous link attribute name from JSON Response string which holds previous url."
+                  expressionType="Notify"
+                  name="PrevUrlAttribute"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies value for NextUrlAttribute or StopIndicatorAttribute which indicates last page to stop pagination. If you have specified StopIndicatorAttribute then you can use Regular expression rather than static value to indicate last page. To use regular expression value of this property must start with regex= prefix. Example : regex=FALSE|N  (assuming you set StopIndicatorAttribute to something like $.hasMore)"
+                  expressionType="Notify"
+                  name="NextUrlStopIndicator"></property>
+                <property
+                  dataType="System.String"
+                  description="Attribute name or expression for attribute which can be used as stop indicator (e.g. hasmore --or-- $.pagination.hasmore). If this value is blank then NextUrlAttribute is used"
+                  expressionType="Notify"
+                  name="StopIndicatorAttribute"></property>
+                <property
+                  dataType="System.String"
+                  description="If you want to include certain text (or parameters) at the end of Next url then specify this attribute (e.g. &amp;format=json). Another common usecase of this property is to supply pagination token to next Page URL. You can also use &lt;%nextlink%&gt; or  &lt;%nextlink_encoded%&gt; placeholder (e.g. &amp;cursor=&lt;%nextlink_encoded%&gt; )"
+                  expressionType="Notify"
+                  name="NextUrlSuffix"></property>
+                <property
+                  dataType="System.Int32"
+                  description="This property indicates total number of milliseconds you want to wait before sending next request. This option allows you to adjust how many API calls can be made within certain timeframe. If your API Service has no limit then set this option to zero"
+                  expressionType="Notify"
+                  name="NextUrlWait">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If this option is true then component will continue without exception on 404 error (Url not found). This allows you to consume data gracefully."
+                  expressionType="Notify"
+                  name="ContinueOnUrlNotFoundError">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Continue when any type of exception occurs during http request"
+                  expressionType="Notify"
+                  name="ContineOnAnyError">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Continue on error when specified substring found in response"
+                  expressionType="Notify"
+                  name="ContineOnErrorForMessage">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Continue on error when specified status code returned from web server"
+                  expressionType="Notify"
+                  name="ContineOnErrorForStatusCode">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="When error occurs no data is returned. Use this option to get content eventhough error occurs. When this option is checked you can't use [continue on error when specific string found in response] option"
+                  expressionType="Notify"
+                  name="ConsumeResponseOnError">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Status code to match when error occurs and ContineOnErrorForStatusCode option is true. If Response status code matches to this code then task continues to run"
+                  expressionType="Notify"
+                  name="ErrorStatusCodeToMatch">404</property>
+                <property
+                  dataType="System.String"
+                  description="Error substring to match when error occurs and ContineOnErrorForMessage option is true. If Response status code matches to this code then task continues to run"
+                  expressionType="Notify"
+                  name="ErrorSubstringToMatch"></property>
+                <property
+                  dataType="System.String"
+                  description="Cookie Container can be used to maintain state between multiple web requests. Example: You can login to site like wordpress and then extract any private page content by simply passing authentication cookies using this variable."
+                  expressionType="Notify"
+                  name="CookieContainerVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Http request Timeout in seconds. Set this to 0 if you want to use system default value (i.e. 100 seconds)"
+                  expressionType="Notify"
+                  name="RequestTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies which security protocol is supported for HTTPS communication. Using this option you can enable legacy protocol or enforce to use latest version of security protocol (Note: TLS 1.2 is only supported in SSIS 2014 or Higher)."
+                  expressionType="Notify"
+                  name="SecurityProtocol"
+                  typeConverter="ZappySys.PowerPack.Common.HttpsSecurityProtocolType, ZappySys.PowerPack140, Version=1.0.0.0, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enable support for gzip or deflate compression. When you check this option compressed response automatically de-compressed saving bandwidth. This option is only valid if web server supports compressed response stream. Check your API documentation for more information."
+                  expressionType="Notify"
+                  name="EnableCompressionSupport">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Ignore SSL certificate related errors. Example: if you getting SSL/TLS errors because of certificate expired or certificate is not from trusted authority or certificate is self-signed. By checking this option you will not get SSL/TLS error."
+                  expressionType="Notify"
+                  name="IgnoreCertificateErrors">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Allow unsecure ciphers/suites and curves for SSLS/TLS communication. Use this option to communicate with web servers which needs legacy / unsecured ciphers support. This option is only trigged when you change default SSL/TLS Version on advanced settings tab."
+                  expressionType="Notify"
+                  name="AllowUnsecureSuite">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Use connection to pass credentials for authentication (e.g. Use UserID/Password or Use OAuth Protocol for token based approach)"
+                  expressionType="Notify"
+                  name="UseConnection">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specified how you want to loop through multiple pages returned by REST API."
+                  expressionType="Notify"
+                  name="PagingMode"
+                  typeConverter="ZappySys.Common.RestApiPagingMode, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="If you wish to pass extracted pagination token or current page number in the body of next request then set this option to true. You can use [$pagetoken$] and [$pagetoken$] placeholders anywhere in the Body where you wish to insert extracted Page token. You must set encoded token you can use &lt;%nextlink_encoded%&gt; inside SuffixForNextUrl Property. If you dont use SuffixForNextUrl then raw nextLink or Token will be inserted inside the body. If you dont specify [$pagetoken$] placeholder in the body then NextPage Token will be appended at the end. NextPage Token is extracted by filter expression specified using property NextUrlSuffix"
+                  expressionType="Notify"
+                  name="EnablePageTokenForBody">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this to true if you wish to specify different URL, Header, Body or Filter for first page and next page (i.e. Paginated response). Some APIs like Amazon MWS, NetSuite, Zuora) you may need to set this to true."
+                  expressionType="Notify"
+                  name="HasDifferentNextPageInfo">false</property>
+                <property
+                  dataType="System.String"
+                  description="When HasDifferentNextPageInfo=true you can set this property to indicate first page and next page. You can specify different URL, Header, Body or Filter for first page and next page (i.e. Paginated response). Use [$tag$] as placeholder anywhere in the URL, Header, Body or Filter and at runtime system will replace it with correct value (first page or next page value). Syntax to specify placeholder for first page vs next page is like a connectionstring url=FirstPageValue|NextPageValue;header=FirstPageValue|NextPageValue;body=FirstPageValue|NextPageValue;filter=FirstPageValue|NextPageValue; You can use one or more key/value pairs to make things dynamic (e.g. url, header, body or filter)  .For example if you have pagination in your API and First URL is http://abc.com/api/items/get and to get more records you have to call http://abc.com/api/items/getNext then you can use [$tag$] as placeholder in the URL http://abc.com/api/items/[$tag$] and specify this property with first page tag and next page tag as url=get|getNext  (Tags are separated using vertical bar). "
+                  expressionType="Notify"
+                  name="PagePlaceholders"></property>
+                <property
+                  dataType="System.String"
+                  description="Use this property to set request body fragment for first page. HasDifferentNextPageInfo must be set to true to use this property."
+                  expressionType="Notify"
+                  name="FirstPageBodyPart"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Use this property to set request body fragment for any request after first request. HasDifferentNextPageInfo must be set to true to use this property."
+                  expressionType="Notify"
+                  name="NextPageBodyPart"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="Expression to extract Maximum pages to loop through. Some APIs don't stop pagination and keep returning last page data when you try to read data after last page. Specify expression (e.g. $.page_count ) to read total pages to loop through using this property."
+                  expressionType="Notify"
+                  name="PagingMaxPagesExpr"></property>
+                <property
+                  dataType="System.String"
+                  description="Expression to extract Maximum records to loop through. Some APIs don't stop pagination and keep returning last page data when you try to read data after last page. Specify expression (e.g. $.total_rows ) to read total pages to loop through using this property. This setting is ignored if you set PagingMaxPagesExpr."
+                  expressionType="Notify"
+                  name="PagingMaxRowsExpr"></property>
+                <property
+                  dataType="System.String"
+                  description="When you enable PagingMaxRowsExpr (end pagination based on MaxRowCount) then you need to count records coming in each response. This expression extract all rows found under specified expression (e.g. $.orders[*] if all records found under orders node)."
+                  expressionType="Notify"
+                  name="PagingMaxRowsDataPathExpr"></property>
+                <property
+                  dataType="System.String"
+                  description="e.g. Type page_num if URL looks like this =&gt; http://abc.com/?page_num=1&amp;sort=true  (page number via query string)&#xA;--or-- Type &lt;%page%&gt; if page number is inside URL path like this =&gt; http://abc.com/1/?sort=true  (e.g. replace page number in url with placeholder http://abc.com/&lt;%page%&gt;/?sort=true)&#xA;Page number will be incremented by one for next URL until last page is reached or [Max Page Number] is reached"
+                  expressionType="Notify"
+                  name="PageNumberAttributeNameInUrl"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum page number until which auto increment is allowed. Type zero for no limit. Next URL contains next page number (increment by one) until last page is detected or [Max Page Number] limit is reached."
+                  expressionType="Notify"
+                  name="MaxPageNumber">0</property>
+                <property
+                  dataType="System.String"
+                  description="Variable name which will hold starting page number. This is ignored if you useing parameter name from query string to indicate page number."
+                  expressionType="Notify"
+                  name="StartPageNumberVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Page counter increment. By default next page is incremented by one if this value is zero. You can also enter negative number if you want to decrease page counter."
+                  expressionType="Notify"
+                  name="PageNumberIncrement">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specified how you want detect last page."
+                  expressionType="Notify"
+                  name="PagingEndStrategy"
+                  typeConverter="ZappySys.Common.UrlPagingEndDetectionStrategy, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Condition result to compare to detect last page. Set this property to True if you want detect last page if condition is true else set this to False."
+                  expressionType="Notify"
+                  name="LastPageWhenConditionEqualsTo">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Minimum bytes expected from response."
+                  expressionType="Notify"
+                  name="ResponseMinBytes">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum bytes from response."
+                  expressionType="Notify"
+                  name="ResponseMaxBytes">3</property>
+                <property
+                  dataType="System.String"
+                  description="Expected error message sub string from response."
+                  expressionType="Notify"
+                  name="ResponseErrorString">not found</property>
+                <property
+                  dataType="System.Int32"
+                  description="Expected status code from response when page number you trying to access not found."
+                  expressionType="Notify"
+                  name="ResponseStatusCode">404</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum JSON records to fetch. Set this value to 0 for all records"
+                  expressionType="Notify"
+                  name="MaxRows">0</property>
+                <property
+                  dataType="System.String"
+                  description="Enter expression here to filter data.(Example:  $.Users[*].UserName ) This will fetch User names from users records"
+                  expressionType="Notify"
+                  name="Filter"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Use this option to include parent properties (Non array) in the output along with Filtered Rows"
+                  expressionType="Notify"
+                  name="IncludeParentColumns">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="By default child and parent information is not included in the output if children not found for specified expression. For example if you want to extract all orders from all customers nodes then you can type $.Customers[*].Orders[*]. This will fetch all orders from all customers. By default customers records without orders wont be included in the output. If you want to include those customers where orders not found then check this option (Output null information for order attributes). This behavior is similar to LEFT OUTER JOIN in SQL (Left side is parent, right side is child). This option is ***resource intensive*** so only check if you really care about this behavior."
+                  expressionType="Notify"
+                  name="IncludeParentColumnsWhenChildMissing">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to true if you want to output parent columns which are array. By default any parent column which is an array is not included in output. See also FilterForParentColumnsWithArrayType property if you set this property"
+                  expressionType="Notify"
+                  name="IncludeParentColumnsWithArrayType">false</property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression to extract value form parent"
+                  expressionType="Notify"
+                  name="FilterForParentColumnsWithArrayType"></property>
+                <property
+                  dataType="System.String"
+                  description="Prefix for parent column name. This option is only valid if you have set IncludeParentColumns=True"
+                  expressionType="Notify"
+                  name="ParentColumnPrefix">P_</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Throw error if property name specified in filter expression is missing. By default it will ignore any missing property errors."
+                  expressionType="Notify"
+                  name="ThrowErrorIfPropertyMissing">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="This property how many nested levels should be scanned to fetch various properties. 0=Scan all child levels."
+                  expressionType="Notify"
+                  name="MaxLevelsToScan">0</property>
+                <property
+                  dataType="System.String"
+                  description="List comma separated property names from JSON document which you want to exclude from output. Specify parent property name to exclude all child nodes."
+                  expressionType="Notify"
+                  name="ExcludedProperties"></property>
+                <property
+                  dataType="System.String"
+                  description="Property level separator used in generated property name (separator for outer properties - Above selected filter node). Use this if default separator is producing duplicate property name which is conflicting with existing name."
+                  expressionType="Notify"
+                  name="LevelSeparator">_</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Enables deep array flattening for selected filtered hierarchy. When you turn on this property it will flatten each property of each array item and expose as column (e.g. If you have Filter set as $.customers[*] and for each customer you have an array of Addresses then you may see output columns like Addresses.1.City, Addresses.1.State, Addresses.2.City, Addresses.2.State .... Addresses.N.City, Addresses.N.State). You can control how many array items you want to flatten by setting MaxArrayItemsToFlatten property."
+                  expressionType="Notify"
+                  name="EnableArrayFlattening">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum number of array items to flatten. inner array flattening. Adjust this property to control how many columns being generated. This option is ignored if you set EnableArrayFlattening=false"
+                  expressionType="Notify"
+                  name="MaxArrayItemsToFlatten">10</property>
+                <property
+                  dataType="System.Int32"
+                  description="Compression format for source file (e.g. gzip, zip)"
+                  expressionType="Notify"
+                  name="FileCompressionType"
+                  typeConverter="ZappySys.Common.FileCompressionType, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Array Transformation you want to apply. Useful for case when you have 2-Dimensional arrays with rows/columns in separate arrays."
+                  expressionType="Notify"
+                  name="ArrayTransformationType"
+                  typeConverter="ZappySys.Json.ArrayTransformType, ZappySys.Json, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">0</property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression to use to extract column names for array transformation."
+                  expressionType="Notify"
+                  name="ArrayTransColumnNameFilter"></property>
+                <property
+                  dataType="System.String"
+                  description="Filter expression for row values (Not applicable for simple array transformation)."
+                  expressionType="Notify"
+                  name="ArrayTransRowValueFilter"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="When you have 2D array but don't have column list specified in a separate array then use this option (e.g. { arr: [[10,11],[21,22]] } )."
+                  expressionType="Notify"
+                  name="ArrayTransEnableCustomColumns">false</property>
+                <property
+                  dataType="System.String"
+                  description="When you have 2D array but don't have column list specified in a separate array then use specify column names here. Use comma separated list (e.g col1,col2,col3 ). Column name Order must match value order."
+                  expressionType="Notify"
+                  name="ArrayTransCustomColumns"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies how custom date formatted strings are parsed when reading JSON."
+                  expressionType="Notify"
+                  name="DateFormatString"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how date formatted strings, e.g. Date(1198908717056) and 2012-03-21T05:40Z, are parsed when reading JSON."
+                  expressionType="Notify"
+                  name="DateParseHandling"
+                  typeConverter="ZappySys.Common.DateParseHandling, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indent JSON output so its easy to read."
+                  expressionType="Notify"
+                  name="IndentOutput">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Output as raw JSON document rather than parsing individual fields. This option is helpful if you have documents stored in a file and you want to pass them downstream as raw JSON string rather than parsing into columns."
+                  expressionType="Notify"
+                  name="OutputRawDocument">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to true if you want to output FilePath. This option is ignored when you consume DirectValue or data from Url rather than local files. Output column name will be __FilePath"
+                  expressionType="Notify"
+                  name="OutputFilePath">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to true if you want to output FileName. This option is ignored when you consume DirectValue or data from Url rather than local files. Output column name will be __FileName"
+                  expressionType="Notify"
+                  name="OutputFileName">true</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Set this option to true if you want to move processed file to archive folder."
+                  expressionType="Notify"
+                  name="EnableArchiveFile">false</property>
+                <property
+                  dataType="System.String"
+                  description="Folder path where you want to move processed file."
+                  expressionType="Notify"
+                  name="ArchiveFolderPath"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Folder path where you want to move processed file."
+                  expressionType="Notify"
+                  name="OverwriteFileInArchiveFolder">false</property>
+                <property
+                  dataType="System.String"
+                  description="File naming convention for archived file. By default it will same name as original source file processed. But you can control naming format using {%name%} and {%ext%} placeholders. e.g. {%name%}_processed{%ext%} or {%name%}{%ext%}.{{System::ContainerStartTime,yyyyMMdd_HHmmss_fff}}"
+                  expressionType="Notify"
+                  name="ArchiveFileNamingConvention"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="When this property is true then Column is converted to Row. Pivoted names will appear under  Pivot_Name column and values will appear under Pivot_Value field."
+                  expressionType="Notify"
+                  name="EnablePivot">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Metadata scan mode controls how data type and length is determined. By default few records scanned to determine datatype/length. Changing ScanMode affects length/datatype accuracy."
+                  expressionType="Notify"
+                  name="MetaDataScanMode"
+                  typeConverter="ZappySys.Common.Data.MetaDataScanMode, ZappySys.Common, Version=1.0.2019.10822, Culture=neutral, PublicKeyToken=1903265a93eae502">4</property>
+                <property
+                  dataType="System.Int32"
+                  description="Length for all string column. This option is only valid for MetaDataScanMode=Custom"
+                  expressionType="Notify"
+                  name="MetaDataCustomLength">1000</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">ZappySys.JsonSource</property>
+              </properties>
+              <outputs>
+                <output
+                  refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput]"
+                  errorOrTruncationOperation="Error"
+                  errorRowDisposition="FailComponent"
+                  name="JsonSourceOutput"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[success]"
+                      dataType="bool"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[success]"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[success]"
+                      name="success" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[statusCode]"
+                      dataType="i8"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[statusCode]"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[statusCode]"
+                      name="statusCode" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[requestId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[requestId]"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[requestId]"
+                      name="requestId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[message]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[message]"
+                      length="28"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[message]"
+                      name="message" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userId]"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userId]"
+                      name="data.userId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userFullName]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userFullName]"
+                      length="48"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userFullName]"
+                      name="data.userFullName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userEmail]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userEmail]"
+                      length="76"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.userEmail]"
+                      name="data.userEmail" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.team]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.team]"
+                      length="16"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.team]"
+                      name="data.team" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.success]"
+                      dataType="bool"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.success]"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.success]"
+                      name="data.success" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.sessionId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.sessionId]"
+                      length="448"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.sessionId]"
+                      name="data.sessionId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.roleId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.roleId]"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.roleId]"
+                      name="data.roleId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileType]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileType]"
+                      length="80"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileType]"
+                      name="data.profileType" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileName]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileName]"
+                      length="80"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileName]"
+                      name="data.profileName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileId]"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.profileId]"
+                      name="data.profileId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.orgId]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.orgId]"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.orgId]"
+                      name="data.orgId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[__FileName]"
+                      dataType="wstr"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[__FileName]"
+                      length="600"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[__FileName]"
+                      name="__FileName" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[success]"
+                      dataType="bool"
+                      name="success" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[statusCode]"
+                      dataType="i8"
+                      name="statusCode" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[requestId]"
+                      dataType="wstr"
+                      length="72"
+                      name="requestId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[message]"
+                      dataType="wstr"
+                      length="28"
+                      name="message" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userId]"
+                      dataType="wstr"
+                      length="72"
+                      name="data.userId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userFullName]"
+                      dataType="wstr"
+                      length="48"
+                      name="data.userFullName" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.userEmail]"
+                      dataType="wstr"
+                      length="76"
+                      name="data.userEmail" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.team]"
+                      dataType="wstr"
+                      length="16"
+                      name="data.team" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.success]"
+                      dataType="bool"
+                      name="data.success" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.sessionId]"
+                      dataType="wstr"
+                      length="448"
+                      name="data.sessionId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.roleId]"
+                      dataType="wstr"
+                      length="72"
+                      name="data.roleId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileType]"
+                      dataType="wstr"
+                      length="80"
+                      name="data.profileType" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileName]"
+                      dataType="wstr"
+                      length="80"
+                      name="data.profileName" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.profileId]"
+                      dataType="wstr"
+                      length="72"
+                      name="data.profileId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[data.orgId]"
+                      dataType="wstr"
+                      length="72"
+                      name="data.orgId" />
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].ExternalColumns[__FileName]"
+                      dataType="wstr"
+                      length="600"
+                      name="__FileName" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output]"
+                  isErrorOut="true"
+                  name="JsonSource Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[success]"
+                      dataType="bool"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[success]"
+                      name="success" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[statusCode]"
+                      dataType="i8"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[statusCode]"
+                      name="statusCode" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[requestId]"
+                      dataType="wstr"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[requestId]"
+                      name="requestId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[message]"
+                      dataType="wstr"
+                      length="28"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[message]"
+                      name="message" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userId]"
+                      dataType="wstr"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userId]"
+                      name="data.userId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userFullName]"
+                      dataType="wstr"
+                      length="48"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userFullName]"
+                      name="data.userFullName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userEmail]"
+                      dataType="wstr"
+                      length="76"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.userEmail]"
+                      name="data.userEmail" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.team]"
+                      dataType="wstr"
+                      length="16"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.team]"
+                      name="data.team" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.success]"
+                      dataType="bool"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.success]"
+                      name="data.success" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.sessionId]"
+                      dataType="wstr"
+                      length="448"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.sessionId]"
+                      name="data.sessionId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.roleId]"
+                      dataType="wstr"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.roleId]"
+                      name="data.roleId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileType]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileType]"
+                      name="data.profileType" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileName]"
+                      dataType="wstr"
+                      length="80"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileName]"
+                      name="data.profileName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileId]"
+                      dataType="wstr"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.profileId]"
+                      name="data.profileId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.orgId]"
+                      dataType="wstr"
+                      length="72"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[data.orgId]"
+                      name="data.orgId" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[__FileName]"
+                      dataType="wstr"
+                      length="600"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[__FileName]"
+                      name="__FileName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorColumnName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="128"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorColumnName]"
+                      name="ErrorColumnName" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorMessage]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSource Error Output].Columns[ErrorMessage]"
+                      name="ErrorMessage" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Salesforce Session ID"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dbo].[SALESFORCE_CREDENTIALS]
+  SET SESSIONID = ? WHERE CREDS_ID = 1   </property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input].Columns[data.sessionId]"
+                      cachedDataType="wstr"
+                      cachedLength="448"
+                      cachedName="data.sessionId"
+                      externalMetadataColumnId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput].Columns[data.sessionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="1000"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Generate &amp; Store Session ID.Paths[JsonSourceOutput]"
+              endId="Package\Generate &amp; Store Session ID\Update Salesforce Session ID.Inputs[OLE DB Command Input]"
+              name="JsonSourceOutput"
+              startId="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call.Outputs[JsonSourceOutput]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Read Salesforece Credentials"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3452e6c8-8040-424f-a34c-a76ba24ffd2e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Read Salesforece Credentials"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="SELECT  [CREDS_ID]&#xA;      ,[USERNAME]&#xA;      ,[PASSWORD]&#xA;  FROM [LANDING].[dbo].[SALESFORCE_CREDENTIALS]"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="PASSWORD"
+            SQLTask:DtsVariableName="User::PASSWORD" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="USERNAME"
+            SQLTask:DtsVariableName="User::USERNAME" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CREDS_ID"
+            SQLTask:DtsVariableName="User::CREDS_ID" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_SessionEnd"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9ac76648-d770-473b-9969-e66518600e5d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_SessionEnd"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_SessionEnd.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{ed95d966-664b-49a4-ade0-3f852838eb6e}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{4d092ca0-7066-4f1b-937b-bf53c875c2e5}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN SET [SESSION_STATUS_UPD_TS] = GETDATE() , [SESSION_STATUS]=? WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{db04ab82-c2b4-491e-a368-6c5288a7a4d6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Audit.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{a300c3fe-ae16-4237-8ea6-72dbf0b8a902}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{a8312412-a181-4efb-b142-9673af4ab9f4}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log] ([ETL_SESSION_ID] , [SOURCE_SYSTEM] , [SOURCE_KEY_COUNT] , [ETL_SOURCE_REJ_COUNT] ) VALUES (?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{2f4349f7-767e-438a-8e04-e469c76f2cd2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Start.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{a239810c-50b4-42aa-ade2-f274886131ee}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{a5efd784-e934-456d-8754-80c23f43161d}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{59DC4CF6-1721-4F6B-8340-18955B0A7A08}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_RUN]&#xA;(&#xA; [ETL_EXECUTION_ID]&#xA; ,[ETL_JOB_NAME]&#xA; ,[SESSION_STATUS]&#xA; ,[SESSION_START_TS]&#xA;)&#xA;VALUES&#xA;(?,?,?,GETDATE())&#xA;&#xA;&#xA;SELECT @@IDENTITY AS SessionId"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SessionId"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1caee590-53ea-4a80-8688-5e87699915d5}"
+      DTS:From="Package\Read Salesforece Credentials"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Generate &amp; Store Session ID" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{73E0D749-5E91-495C-8A63-429B34802E1B}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Read Salesforece Credentials" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{5C5E2997-BE6C-4ECA-A4AB-8E515D23B65D}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_SessionEnd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA6B2D95-42BE-410D-BAC4-4FEB42DAEA18}"
+      DTS:From="Package\Generate &amp; Store Session ID"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{ecdae302-ff96-4482-90a7-303efaea458a}"
+      DTS:From="Package\SQL_SessionEnd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="139,340" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="125,536" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="128,50" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL_SessionEnd"
+          TopLeft="133,442" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="214,382">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="210.5,484">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,52"
+              Start="0,0"
+              End="0,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="214,42"
+          Id="Package\Generate &amp; Store Session ID"
+          TopLeft="109.333333333333,232.333333333333" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\Read Salesforece Credentials"
+          TopLeft="104,148" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="213.916666666667,190">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.333333333333"
+              Start="0,0"
+              End="0,34.833333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.833333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="211.5,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56"
+              Start="0,0"
+              End="0,48.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="216.416666666667,274.333333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,65.666666666667"
+              Start="0,0"
+              End="0,58.166666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,58.166666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Generate &amp; Store Session ID">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="199,42"
+          Id="Package\Generate &amp; Store Session ID\Salesforce OAuth API Call"
+          TopLeft="285,15" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\Generate &amp; Store Session ID\Update Salesforce Session ID"
+          TopLeft="278,131" />
+        <EdgeLayout
+          Id="Package\Generate &amp; Store Session ID.Paths[JsonSourceOutput]"
+          TopLeft="385.5,57">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\Generate &amp; Store Session ID.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\EXPR_Change_Status"
+          TopLeft="60,61" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="500,60" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\Generate &amp; Store Session ID.EventHandlers[OnError]\SQL_UpdateSessionID"
+          TopLeft="291,61" />
+        <EdgeLayout
+          Id="Package\Generate &amp; Store Session ID.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="240,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,0"
+              Start="0,0"
+              End="43.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Generate &amp; Store Session ID.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="475,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25,0"
+              Start="0,0"
+              End="17.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2177 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/6/2019 12:42:13 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SSIS"
+  DTS:CreatorName="SSIS\Administrator"
+  DTS:DTSID="{42D529C2-E134-443D-BF10-1CD1901E7A27}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LdgToStg_SalesForce_Users"
+  DTS:PackageType="5"
+  DTS:VersionBuild="64"
+  DTS:VersionGUID="{24BE032A-F9CD-470F-A3F0-C1F1FCB17A50}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.EDWSTGLOGDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.EDWSTGLOGDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{632CFED3-9837-464B-B443-8BD429E40F19}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{64C2592B-3728-4DA3-B32B-22C42331B768}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{8E26FE8B-9E42-40C7-AC52-F1C42838A2E9}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7C485905-850C-44B1-B021-58C09385CA3A}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B5985DB7-B5D3-406A-B99E-6B34AE261F4D}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{6B54F456-4B80-4FE0-9BC1-FAD425130D11}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{60E21A42-6E55-472D-A789-A9F74143DC8C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_LtgToStgCustomerMaster"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{c49fb22f-180b-42f3-ab16-1664b56faa97}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_LtgToStgCustomerMaster"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{fcbe1f93-c153-4dcf-a2c2-56f9ac952626}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="10">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{b27ebcbc-0720-42a1-89f3-70ed61edd10c}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{05275bef-b64e-4b0b-87b1-d929ae8cf233}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_Change_Status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{8cdc8a4b-566b-4cce-ba14-f4e711f40c22}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?,?,?,?,GETDATE())&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{6e8709e4-32b9-49f8-bcea-e6a037eb9be1}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_UpdateSessionID">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN&#xA; SET&#xA;  [SESSION_STATUS_UPD_TS] = GETDATE()&#xA;  ,[SESSION_STATUS]='Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{a84b2f69-efd4-476d-93f7-ccb864f75897}"
+              DTS:From="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_UpdateSessionID" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{6ecac921-864d-46ba-aecc-66a77c4c2c0e}"
+              DTS:From="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_InsertErrorCount">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ErrorCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_LtgToStgCustomerMaster\CNT_Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_LtgToStgCustomerMaster\CNT_Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\CNT_Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_LtgToStgCustomerMaster\CNT_Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV_SalesFourceUser"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input].Columns[FirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="FirstName"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="LastName"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input].Columns[PropertyType__c]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="PropertyType__c"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PropertyType__c]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      name="Copy of FirstName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[FirstName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of LastName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of LastName]"
+                      name="Copy of LastName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LastName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of PropertyType__c]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of PropertyType__c]"
+                      name="Copy of PropertyType__c"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PropertyType__c]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DST_TB_Insert_Sales_Users"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_CustomerMaster]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="RedirectRow"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[MiddleName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="MiddleName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[MiddleName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Salutation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Salutation"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Salutation]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Salutation]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[OrganizationName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="OrganizationName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[OrganizationName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[OrganizationName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[DisplayName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="DisplayName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DisplayName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[DisplayName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[IsActive]"
+                      cachedDataType="i4"
+                      cachedName="IsActive"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsActive]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[PrefCommunicationChannel]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="PrefCommunicationChannel"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PrefCommunicationChannel]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PrefCommunicationChannel]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[IsProspect]"
+                      cachedDataType="i4"
+                      cachedName="IsProspect"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsProspect]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsProspect]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[PersonOrgType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="PersonOrgType"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PersonOrgType]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PersonOrgType]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Copy of FirstName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Copy of FirstName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of FirstName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Copy of LastName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Copy of LastName"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of LastName]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[CreatedDate]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CreatedDate"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[CreatedDate]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Gender__c]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Gender__c"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Gender__c]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Birthdate__c ]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Birthdate__c "
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBirth]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Birthdate__c ]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Nationality__c]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="Nationality__c"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Nationality]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Nationality__c]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[PreferredLanguage__c]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1024"
+                      cachedName="PreferredLanguage__c"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PreferredLanguage]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PreferredLanguage__c]" />
+                    <inputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].Columns[Copy of PropertyType__c]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="Copy of PropertyType__c"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ResidentialStatus]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output].Columns[Copy of PropertyType__c]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PersonOrgType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PersonOrgType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MiddleName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[AliasName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="AliasName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Salutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[OrganizationName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="OrganizationName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DisplayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="DisplayName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DateOfBirth]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PlaceOfBirth]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PlaceOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MaritalStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[CreateDate]"
+                      dataType="dbTimeStamp"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsActive]"
+                      dataType="bool"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ProfileUrl]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ProfileUrl" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[AgeGroup]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="AgeGroup" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[Nationality]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Nationality" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[OrgType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="OrgType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[VipFlag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="VipFlag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PrefCommunicationChannel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PrefCommunicationChannel" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ContactSource]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="ContactSource" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PreferredLanguage]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PreferredLanguage" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DocumentStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="DocumentStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ContactType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="ContactType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[CustomerClass]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="CustomerClass" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[DataSource]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ArabicName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="ArabicName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsProspect]"
+                      dataType="bool"
+                      name="IsProspect" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ThirdName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="ThirdName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[NickName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="NickName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[ResidentialStatus]"
+                      dataType="wstr"
+                      length="1"
+                      name="ResidentialStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PreferredCommunicationFrequency]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PreferredCommunicationFrequency" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MDM_DateOfBirth]"
+                      dataType="dbTimeStamp"
+                      name="MDM_DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MDM_Gender]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="MDM_Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[MDM_Salutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="MDM_Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[LeaseName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="LeaseName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PropertyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PropertyCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[PropertyName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PropertyName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[TenantStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="TenantStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[LeaseTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="LeaseTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[LeaseType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="LeaseType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input].ExternalColumns[CategoryCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="CategoryCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_LdgSalesFourceUser"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000)
+      [LeadNumber__c] AS SourceCustomerId
+	  ,'SALESFORCE' AS SourceSystemName
+	  ,1 AS [IsActive]
+	  ,0 AS [IsProspect]
+	  ,1 AS [IsValid]
+	  ,[Name] AS DisplayName
+      ,CASE
+       WHEN LeadType__c='Individual' THEN 'P'
+       ELSE 'O'
+	   END AS LeadType__c
+	   ,LeadType__c AS PersonOrgType
+	  ,CASE
+       WHEN LeadType__c='Individual' THEN null
+       ELSE [Name]
+	   END AS OrganizationName
+	   ,CASE
+       WHEN [DoNotCall]='False' THEN 'Phone'
+       ELSE null
+	   END AS PrefCommunicationChannel
+      ,[Birthdate__c ]
+      ,[CreatedDate]
+      ,[FirstName]
+      ,[Gender__c]
+      ,[LastName]
+      ,[LeadNumber__c]
+      ,[MiddleName]
+      ,[Nationality__c]
+      ,[PropertyType__c]
+      ,[PreferredLanguage__c]
+      ,[Salutation]
+  FROM [LANDING].[dbo].[LDG_SALESFORCE_USERS]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[MiddleName]"
+                      name="MiddleName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Nationality__c]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Nationality__c]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Nationality__c]"
+                      name="Nationality__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PreferredLanguage__c]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PreferredLanguage__c]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PreferredLanguage__c]"
+                      name="PreferredLanguage__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Salutation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Salutation]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Salutation]"
+                      name="Salutation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      length="10"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[OrganizationName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[OrganizationName]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[OrganizationName]"
+                      name="OrganizationName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[DisplayName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[DisplayName]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[DisplayName]"
+                      name="DisplayName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Birthdate__c ]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Birthdate__c ]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Birthdate__c ]"
+                      name="Birthdate__c "
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Gender__c]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Gender__c]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[Gender__c]"
+                      name="Gender__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsActive]"
+                      name="IsActive"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PrefCommunicationChannel]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PrefCommunicationChannel]"
+                      length="5"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PrefCommunicationChannel]"
+                      name="PrefCommunicationChannel"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsProspect]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsProspect]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsProspect]"
+                      name="IsProspect"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PersonOrgType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PersonOrgType]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PersonOrgType]"
+                      name="PersonOrgType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LeadNumber__c]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[LeadNumber__c]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[LeadNumber__c]"
+                      name="LeadNumber__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PropertyType__c]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PropertyType__c]"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[PropertyType__c]"
+                      name="PropertyType__c"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[LeadType__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="LeadType__c" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[MiddleName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Nationality__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Nationality__c" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PreferredLanguage__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PreferredLanguage__c" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Salutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      dataType="i8"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[OrganizationName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="OrganizationName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[DisplayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="DisplayName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Birthdate__c ]"
+                      dataType="dbTimeStamp"
+                      name="Birthdate__c " />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[Gender__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="Gender__c" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[LeadNumber__c]"
+                      dataType="i8"
+                      name="LeadNumber__c" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsActive]"
+                      dataType="i4"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PrefCommunicationChannel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="PrefCommunicationChannel" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsProspect]"
+                      dataType="i4"
+                      name="IsProspect" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PersonOrgType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PersonOrgType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output].ExternalColumns[PropertyType__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      name="PropertyType__c" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsActive]"
+                      name="IsActive" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsProspect]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsProspect]"
+                      name="IsProspect" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[DisplayName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[DisplayName]"
+                      name="DisplayName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PersonOrgType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PersonOrgType]"
+                      name="PersonOrgType" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PrefCommunicationChannel]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PrefCommunicationChannel]"
+                      name="PrefCommunicationChannel" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[OrganizationName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[OrganizationName]"
+                      name="OrganizationName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Birthdate__c ]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Birthdate__c ]"
+                      name="Birthdate__c " />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Gender__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Gender__c]"
+                      name="Gender__c" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[MiddleName]"
+                      name="MiddleName" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Nationality__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Nationality__c]"
+                      name="Nationality__c" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PreferredLanguage__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PreferredLanguage__c]"
+                      name="PreferredLanguage__c" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Salutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[Salutation]"
+                      name="Salutation" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PropertyType__c]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1024"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[PropertyType__c]"
+                      name="PropertyType__c" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[LeadNumber__c]"
+                      dataType="i8"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[LeadNumber__c]"
+                      name="LeadNumber__c" />
+                    <outputColumn
+                      refId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_LtgToStgCustomerMaster.Paths[Data Conversion Output]"
+              endId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_LtgToStgCustomerMaster.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\DFT_LtgToStgCustomerMaster.Paths[OLE DB Source Output]"
+              endId="Package\DFT_LtgToStgCustomerMaster\CNT_Row.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_LtgToStgCustomerMaster.Paths[Row Count Output 1]"
+              endId="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser.Inputs[Data Conversion Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_LtgToStgCustomerMaster\CNT_Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{C9F6F054-CA14-4C0B-8774-5AE57DE7EF8A}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_SessionEnd"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{6be2be12-8b16-43c2-be17-cb830c8624e6}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_SessionEnd"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_SessionEnd.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{4e0f8ff3-0f37-4fa4-bc4a-9b88b5d46edb}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{412f9297-1b81-458e-98e8-20c78de6a211}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN SET [SESSION_STATUS_UPD_TS] = GETDATE() , [SESSION_STATUS]=? WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{3c2b1d12-6b29-4243-b89b-e9e934521a1e}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Audit.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{fbe78365-da42-461e-9227-221d8095640e}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{36a8b81f-3f33-43d1-a69d-a88bb392d4ea}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log] ([ETL_SESSION_ID] , [SOURCE_SYSTEM] , [SOURCE_KEY_COUNT] , [ETL_SOURCE_REJ_COUNT] ) VALUES (?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{f76c487a-5c8c-43fc-a90c-110d34becc01}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Start.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{5fea6f4f-877d-4265-aa83-d0db56ec8aab}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{7f18b292-74c2-4c10-a5b3-503665627efe}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_RUN]&#xA;(&#xA; [ETL_EXECUTION_ID]&#xA; ,[ETL_JOB_NAME]&#xA; ,[SESSION_STATUS]&#xA; ,[SESSION_START_TS]&#xA;)&#xA;VALUES&#xA;(?,?,?,GETDATE())&#xA;&#xA;&#xA;SELECT @@IDENTITY AS SessionId"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SessionId"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{51d953b7-dab2-4794-8248-69cf055ed1d7}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_LtgToStgCustomerMaster" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9BA0E0CF-B869-46DC-BD5C-F59F1310F811}"
+      DTS:From="Package\DFT_LtgToStgCustomerMaster"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{8D950353-4F31-4336-9B7D-2AECF35E13C8}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_SessionEnd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{d706252d-3f99-4e8c-bb0c-1d4beada43a6}"
+      DTS:From="Package\SQL_SessionEnd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{38169813-A2EB-43B1-8B65-762705000FC2}"
+      DTS:EventID="7471215"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{6E8EC40A-3B9D-4B39-A7EE-6A7E73476019}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables />
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DFT_LtgToStgCustomerMaster"
+          TopLeft="68,146" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="98,249" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="65,519" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL_SessionEnd"
+          TopLeft="77,422" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="143.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="36,44"
+              Start="0,0"
+              End="36,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="32,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="32,22"
+                    Point2="36,22"
+                    Point3="36,26" />
+                  <mssgle:LineSegment
+                    End="36,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="177.5,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="175.5,291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-20,131"
+              Start="0,0"
+              End="-20,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.5"
+                    Point2="0,65.5"
+                    Point3="-4,65.5" />
+                  <mssgle:LineSegment
+                    End="-16,65.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-16,65.5"
+                    Point2="-20,65.5"
+                    Point3="-20,69.5" />
+                  <mssgle:LineSegment
+                    End="-20,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="152.5,464">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_LtgToStgCustomerMaster">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser"
+          TopLeft="280,2" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users"
+          TopLeft="274,312" />
+        <NodeLayout
+          Size="189,42"
+          Id="Package\DFT_LtgToStgCustomerMaster\DCNV_SalesFourceUser"
+          TopLeft="276,187" />
+        <NodeLayout
+          Size="125,42"
+          Id="Package\DFT_LtgToStgCustomerMaster\CNT_Row"
+          TopLeft="289,96" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DFT_LtgToStgCustomerMaster\CNT_InsertErrorCount"
+          TopLeft="294,475" />
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.Paths[Data Conversion Output]"
+          TopLeft="370.5,229">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="28.5,83"
+              Start="0,0"
+              End="28.5,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.5"
+                    Point2="0,41.5"
+                    Point3="4,41.5" />
+                  <mssgle:LineSegment
+                    End="24.5,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="24.5,41.5"
+                    Point2="28.5,41.5"
+                    Point3="28.5,45.5" />
+                  <mssgle:LineSegment
+                    End="28.5,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.Paths[Row Count Output 1]"
+          TopLeft="351.5,138">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,49"
+              Start="0,0"
+              End="19,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.5"
+                    Point2="0,24.5"
+                    Point3="4,24.5" />
+                  <mssgle:LineSegment
+                    End="15,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,24.5"
+                    Point2="19,24.5"
+                    Point3="19,28.5" />
+                  <mssgle:LineSegment
+                    End="19,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.Paths[OLE DB Source Output]"
+          TopLeft="386,44">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-34.5,52"
+              Start="0,0"
+              End="-34.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-30.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-30.5,26"
+                    Point2="-34.5,26"
+                    Point3="-34.5,30" />
+                  <mssgle:LineSegment
+                    End="-34.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.Paths[OLE DB Destination Error Output]"
+          TopLeft="399,354">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5,121"
+              Start="0,0"
+              End="-13.5,113.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.5"
+                    Point2="0,60.5"
+                    Point3="-4,60.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,60.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.5,60.5"
+                    Point2="-13.5,60.5"
+                    Point3="-13.5,64.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,113.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-79.95890625,65.5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\EXPR_Change_Status"
+          TopLeft="113,98" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="553,97" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError]\SQL_UpdateSessionID"
+          TopLeft="344,98" />
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="293,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,0"
+              Start="0,0"
+              End="43.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_LtgToStgCustomerMaster.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="528,118.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25,0"
+              Start="0,0"
+              End="17.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_LtgToStgCustomerMaster\OLEDB_LdgSalesFourceUser">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_LtgToStgCustomerMaster\OLEDB_DST_TB_Insert_Sales_Users">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

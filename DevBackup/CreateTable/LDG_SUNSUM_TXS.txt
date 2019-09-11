@@ -1,0 +1,33 @@
+USE [LANDING]
+GO
+
+ Object  Table [dbo].[LDG_SUNSUM_TXS]    Script Date 9112019 42114 AM 
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[LDG_SUNSUM_TXS](
+	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[CreatedDate] [datetime] NULL,
+	[OfferDescription] [nvarchar](1024) NULL,
+	[FirstName] [nvarchar](1024) NULL,
+	[LastName] [nvarchar](255) NULL,
+	[EmailId] [nvarchar](255) NULL,
+	[OrderLocation] [nvarchar](255) NULL,
+	[Destination] [nvarchar](255) NULL,
+	[RecordTimeStamp] [datetime] NULL,
+	[SSID] [bigint] NULL,
+	[CreatedDateSrc] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[LDG_SUNSUM_TXS] ADD  DEFAULT (getdate()) FOR [RecordTimeStamp]
+GO
+
+

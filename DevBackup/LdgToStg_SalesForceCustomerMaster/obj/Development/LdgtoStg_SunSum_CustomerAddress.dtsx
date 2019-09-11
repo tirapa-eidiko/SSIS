@@ -1,0 +1,1602 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/7/2019 12:25:55 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="KOTESH"
+  DTS:CreatorName="KOTESH\Administrator"
+  DTS:DTSID="{0EB86FE9-05AF-46CB-AF7E-CD66FE66945B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LdgtoStg_CustomerAddress"
+  DTS:PackageType="5"
+  DTS:VersionBuild="56"
+  DTS:VersionGUID="{3455113A-D326-42A8-BFEB-7C40F34C0D37}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B73D5B64-46FD-4664-8196-A6F08B9B3E07}"
+      DTS:ObjectName="OLEDB_LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+      DTS:ObjectName="OLEDB_LOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{78502033-8DB6-4CDD-A6B5-6CA0A689F602}"
+      DTS:ObjectName="OLEDB_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{614D9140-B1A4-4979-BADF-B799E8CDAB0D}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3A5A0DCE-0B2B-4BCF-A4DD-C9137A8A4906}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{ACE4D781-DD0E-4517-A2A3-662A9B3F530F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5E067E6E-027C-41D9-B027-88E2F41E7CBF}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{375DB58A-FBC9-4D22-B0C7-F6B9F2EECEBB}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8">INPROCESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_SunSum_Src_CustAdd"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0CF0C0ED-8CCE-4412-80C1-DD7A7371DA2E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_SunSum_Src_CustAdd"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{8F0F088C-7696-449C-AF5F-659658CE65C7}"
+          DTS:EventID="456471060"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{0468D370-AED0-4FE8-A314-1EA394F18F77}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\EXPR_change_status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{8c35f204-19b5-4ae1-a932-2c0ad82dbf10}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_change_status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{7b3f9af8-1200-4235-b2aa-1f82c1bc7bf0}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           ,GETDATE()&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{b1e3c808-808d-41a1-9bc8-58ec44d18691}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Update_Session">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_Run]&#xA;   SET &#xA;       [SESSION_STATUS_UPD_TS] =GETDATE()&#xA;      ,[SESSION_STATUS] = 'Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{b7c8e209-6cde-4257-86a1-8ab17163b771}"
+              DTS:From="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\EXPR_change_status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Update_Session" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{2b4ecac1-e5b1-449b-ab85-30a19377519c}"
+              DTS:From="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_SunSum_Src_CustAdd\Count_Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count_Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustAdd\Count_Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\Count_Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustAdd\Count_Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV_CustAdd"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="SourceSystemName"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[OrderLocation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OrderLocation"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[OrderLocation]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[Destination]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Destination"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input].Columns[RecordTimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="RecordTimeStamp"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of OrderLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of OrderLocation]"
+                      name="Copy of OrderLocation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[OrderLocation]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of Destination]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of Destination]"
+                      name="Copy of Destination"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[Destination]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of RecordTimeStamp]"
+                      name="Copy of RecordTimeStamp"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of SourceCustomerId]"
+                      name="Copy of SourceCustomerId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceCustomerId]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="7"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of SourceSystemName]"
+                      name="Copy of SourceSystemName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceSystemName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output].Columns[Copy of IsValid]"
+                      name="Copy of IsValid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[IsValid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DST_SunSum_TB_Insert_CustAdd"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_CustomerAddress]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS,ROWS_PER_BATCH = 5</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[OrderLocation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OrderLocation"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineTwo]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[OrderLocation]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[Destination]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Destination"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineThree]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[RecordTimeStamp]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="RecordTimeStamp"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="7"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[IsValid]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="AddressType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressTypeCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="AddressTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineTwo]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLineTwo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineThree]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLineThree" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineFour]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLineFour" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[OptionOptOutFlag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="OptionOptOutFlag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[State]"
+                      dataType="wstr"
+                      length="255"
+                      name="State" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[AddressLineOne]"
+                      dataType="wstr"
+                      length="255"
+                      name="AddressLineOne" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input].ExternalColumns[ZipCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="ZipCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_SRC_SunSum_TB_CustAdd"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[LDG_SUNSUM_TXS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT TOP (1000)
+      [SSID] AS SourceCustomerId
+	  ,'SUN_SUM' AS SourceSystemName
+	  ,1 AS [IsValid]
+	  ,[OrderLocation]
+                      ,[Destination]
+                     ,[RecordTimeStamp]
+  FROM [LANDING].[dbo].[LDG_SUNSUM_TXS]</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[OrderLocation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[OrderLocation]"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[OrderLocation]"
+                      name="OrderLocation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[Destination]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[Destination]"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[Destination]"
+                      name="Destination"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[RecordTimeStamp]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]"
+                      name="RecordTimeStamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      length="7"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[OrderLocation]"
+                      dataType="wstr"
+                      length="255"
+                      name="OrderLocation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[Destination]"
+                      dataType="wstr"
+                      length="255"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      dataType="i8"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[OrderLocation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[OrderLocation]"
+                      name="OrderLocation" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[Destination]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[Destination]"
+                      name="Destination" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[RecordTimeStamp]"
+                      name="RecordTimeStamp" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="7"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustAdd\Row Count 1"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row Count 1">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::ErrorCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustAdd\Row Count 1.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustAdd\Row Count 1.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustAdd\Row Count 1.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_SunSum_Src_CustAdd.Paths[Data Conversion Output]"
+              endId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustAdd.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_SunSum_Src_CustAdd\Row Count 1.Inputs[Row Count Input 1]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustAdd.Paths[OLE DB Source Output]"
+              endId="Package\DFT_SunSum_Src_CustAdd\Count_Row.Inputs[Row Count Input 1]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustAdd.Paths[Row Count Output 1]"
+              endId="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd.Inputs[Data Conversion Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_SunSum_Src_CustAdd\Count_Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{6c117d27-6381-47db-8f04-c07150305810}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Expression Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{b034f76b-3651-4e34-81cc-daf0e313e896}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{d1de13b0-5730-4d3f-ac2b-9ee847400675}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Session end"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{7b20324d-0869-449d-a445-84f112a3323b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Session end"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_RUN]&#xA;SET &#xA;[SESSION_STATUS_UPD_TS] = GETDATE()&#xA;,[SESSION_STATUS] = ?&#xA;WHERE ETL_SESSION_ID=?&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{da029034-fe8c-42b8-9ef7-a0724330f115}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[SOURCE_SYSTEM]&#xA;           ,[SOURCE_KEY_COUNT]&#xA;           ,[ETL_SOURCE_REJ_COUNT]&#xA;           )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ad66ec5f-5db9-4879-9491-b7fa63b5dc13}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A694090-161F-4E59-90E6-289F97AA2F1E}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Run]&#xA;           (&#xA;      [ETL_EXECUTION_ID]&#xA;           ,[ETL_JOB_NAME]&#xA;           ,[SESSION_STATUS]&#xA;     ,[SESSION_START_TS]&#xA;     )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;     ,?&#xA;     ,?&#xA;     ,GETDATE()&#xA;     )&#xA;&#xA;&#xA;SELECT @@IDENTITY AS ID&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ID"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{58EB10B9-23E0-4B91-958D-2F86BEF28DCA}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_SunSum_Src_CustAdd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{E3F8039B-7F65-47D0-8DB7-499B193AF5FD}"
+      DTS:From="Package\DFT_SunSum_Src_CustAdd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{bb351a2d-20f1-4e57-9c10-a09708a1bb34}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL Session end" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{fafd85b9-411a-49eb-b683-e2da030fb782}"
+      DTS:From="Package\SQL Session end"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="208,42"
+          Id="Package\DFT_SunSum_Src_CustAdd"
+          TopLeft="54,91" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="82,209" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL Session end"
+          TopLeft="85.5,305.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="82,379" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="77,7" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="159.25,49">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42"
+              Start="0,0"
+              End="0,34.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="158.75,133">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,76"
+              Start="0,0"
+              End="0,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="161.75,251">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="165.25,347.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_SunSum_Src_CustAdd">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="278,42"
+          Id="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd"
+          TopLeft="61,302" />
+        <NodeLayout
+          Size="151,42"
+          Id="Package\DFT_SunSum_Src_CustAdd\DCNV_CustAdd"
+          TopLeft="60,226" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\DFT_SunSum_Src_CustAdd\Row Count 1"
+          TopLeft="77,395" />
+        <NodeLayout
+          Size="244,42"
+          Id="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd"
+          TopLeft="65,60" />
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT_SunSum_Src_CustAdd\Count_Row"
+          TopLeft="70,154" />
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.Paths[Data Conversion Output]"
+          TopLeft="135.5,268">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="64.5,34"
+              Start="0,0"
+              End="64.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="60.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="60.5,17"
+                    Point2="64.5,17"
+                    Point3="64.5,21" />
+                  <mssgle:LineSegment
+                    End="64.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.Paths[Row Count Output 1]"
+          TopLeft="136,196">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.Paths[OLE DB Source Output]"
+          TopLeft="187,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-50.5,52"
+              Start="0,0"
+              End="-50.5,44.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22"
+                    Point2="0,26"
+                    Point3="-4,26" />
+                  <mssgle:LineSegment
+                    End="-46.5,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-46.5,26"
+                    Point2="-50.5,26"
+                    Point3="-50.5,30" />
+                  <mssgle:LineSegment
+                    End="-50.5,44.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.Paths[OLE DB Destination Error Output]"
+          TopLeft="200,344">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-53.5,51"
+              Start="0,0"
+              End="-53.5,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5"
+                    Point2="0,25.5"
+                    Point3="-4,25.5" />
+                  <mssgle:LineSegment
+                    End="-49.5,25.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-49.5,25.5"
+                    Point2="-53.5,25.5"
+                    Point3="-53.5,29.5" />
+                  <mssgle:LineSegment
+                    End="-53.5,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.95890625,30.5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\EXPR_change_status"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="553,61" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError]\SQL_Update_Session"
+          TopLeft="316,60" />
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="237,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustAdd.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="494,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,0"
+              Start="0,0"
+              End="51.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <DtsEventHandler
+    design-time-name="Package\Expression Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="{850913C4-5F9D-4BAA-BA67-727DE4041755}"
+          TopLeft="162,50" />
+        <NodeLayout
+          Size="174,42"
+          Id="{7A3DADB1-28A3-4E73-B529-5AA724D1B27A}"
+          TopLeft="655,85" />
+        <NodeLayout
+          Size="178,42"
+          Id="{7883365E-A346-42EC-BBFE-7AA97DA67D89}"
+          TopLeft="401,68" />
+        <EdgeLayout
+          Id="{B7583FA9-E382-47B8-BD71-6CE1F3BF4A08}"
+          TopLeft="339,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,18"
+              Start="0,0"
+              End="54.5,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,0"
+                    Point2="31,0"
+                    Point3="31,4" />
+                  <mssgle:LineSegment
+                    End="31,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31,14"
+                    Point2="31,18"
+                    Point3="35,18" />
+                  <mssgle:LineSegment
+                    End="54.5,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{7D3A3B13-FFD3-4A58-82BB-4B8EAEC47272}"
+          TopLeft="579,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,17"
+              Start="0,0"
+              End="68.5,17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34,0"
+                    Point2="38,0"
+                    Point3="38,4" />
+                  <mssgle:LineSegment
+                    End="38,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38,13"
+                    Point2="38,17"
+                    Point3="42,17" />
+                  <mssgle:LineSegment
+                    End="68.5,17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SunSum_Src_CustAdd\OLEDB_DST_SunSum_TB_Insert_CustAdd">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_SunSum_Src_CustAdd\OLEDB_SRC_SunSum_TB_CustAdd">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

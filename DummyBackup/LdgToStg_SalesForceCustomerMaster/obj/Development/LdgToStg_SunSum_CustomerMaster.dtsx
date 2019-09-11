@@ -1,0 +1,1579 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/9/2019 5:59:03 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="FNCN"
+  DTS:CreatorName="FNCN\Administrator"
+  DTS:DTSID="{ADE1EA81-890C-44E2-8E77-E339A4B09671}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LdgToStg_CustomerMaster"
+  DTS:PackageType="5"
+  DTS:VersionBuild="66"
+  DTS:VersionGUID="{754AB694-382E-4338-B5F5-F6C8B1E8BAA6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LANDING]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{BE1572D7-8FB3-4121-AD71-4C976EBC22A3}"
+      DTS:ObjectName="OLEDB_LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Integrated Security=True;Application Name=SSIS-LdgToStg_CustomerMaster-{BE1572D7-8FB3-4121-AD71-4C976EBC22A3}SSIS\MDMSQLSERVER.LANDING1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+      DTS:ObjectName="OLEDB_LOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_STAGING]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{5EFD39B9-00B4-4677-963E-6AEE49773DA6}"
+      DTS:ObjectName="OLEDB_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Integrated Security=True;Application Name=SSIS-LdgToStg_CustomerMaster-{5EFD39B9-00B4-4677-963E-6AEE49773DA6}SSIS\MDMSQLSERVER.STAGING1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1978E069-5F3C-4B31-B36E-DE0CB2DA4E88}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="ErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{D6878C88-AF52-49A1-ACA8-94CBFB0CC423}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9467FCB3-756D-4B4D-9301-E8C9656AFF5E}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FB1B64E1-D536-4D60-82A4-093313B0A4F6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8">LDG_SUNSUM_TXS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9B1379EE-D0F5-4C6A-B296-274BEAE9B59C}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8">INPROCESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_SunSum_Src_CustMast"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1e0dfbb4-d65c-49ff-9b0c-71d9c11da6d8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_SunSum_Src_CustMast"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{fc0b1f31-30e3-4788-a1d5-11ed368a4578}"
+          DTS:EventID="729863679"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{0c656c45-9d99-4634-ac91-9b39e10751ba}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\EXPR_change_status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{54d124ba-cebe-4477-aad4-9e4eb74d9622}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_change_status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{584dff86-3d25-4598-baa8-b5cc20317ebf}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           ,GETDATE()&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{50d0790e-d332-4906-8777-9677330e05bd}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Update_Session">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_Run]&#xA;   SET &#xA;       [SESSION_STATUS_UPD_TS] =GETDATE()&#xA;      ,[SESSION_STATUS] = 'Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{adf9b554-21c2-4e47-ad98-3d15ec237d9a}"
+              DTS:From="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\EXPR_change_status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Update_Session" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{a39d61c8-c6e7-4302-9122-485569f2529d}"
+              DTS:From="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Update_Session"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_ErrorCount">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustMast\Count_Row"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Count_Row">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustMast\Count_Row.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\Count_Row.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustMast\Count_Row.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DCNV_CustMast"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Inputs[Data Conversion Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="FirstName"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="210"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      name="Copy of FirstName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[FirstName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="OLEDB_DST_SunSum_TB_Insert_CustMast"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."STG_CustomerMaster"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_STAGING]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[SourceSystemName]"
+                      cachedDataType="wstr"
+                      cachedLength="7"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemName]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[IsValid]"
+                      cachedDataType="i4"
+                      cachedName="IsValid"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[IsValid]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="FirstName"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].Columns[ID]"
+                      cachedDataType="i8"
+                      cachedName="ID"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[ID]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[SourceCustomerId]"
+                      dataType="wstr"
+                      length="1024"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[SourceSystemName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PersonOrgType]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PersonOrgType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[MiddleName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="MiddleName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[AliasName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="AliasName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[Salutation]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[OrganizationName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="OrganizationName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[DisplayName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="DisplayName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[Gender]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[DateOfBirth]"
+                      dataType="dbTimeStamp"
+                      name="DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PlaceOfBirth]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PlaceOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[MaritalStatus]"
+                      dataType="wstr"
+                      length="1024"
+                      name="MaritalStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[CreateDate]"
+                      dataType="dbTimeStamp"
+                      name="CreateDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp"
+                      name="ModifiedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[IsActive]"
+                      dataType="bool"
+                      name="IsActive" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ProfileUrl]"
+                      dataType="wstr"
+                      length="200"
+                      name="ProfileUrl" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[AgeGroup]"
+                      dataType="wstr"
+                      length="1024"
+                      name="AgeGroup" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[Nationality]"
+                      dataType="wstr"
+                      length="1024"
+                      name="Nationality" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[OrgType]"
+                      dataType="wstr"
+                      length="1024"
+                      name="OrgType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[VipFlag]"
+                      dataType="wstr"
+                      length="1024"
+                      name="VipFlag" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PrefCommunicationChannel]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PrefCommunicationChannel" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ContactSource]"
+                      dataType="wstr"
+                      length="1024"
+                      name="ContactSource" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PreferredLanguage]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PreferredLanguage" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[DocumentStatus]"
+                      dataType="wstr"
+                      length="1024"
+                      name="DocumentStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ContactType]"
+                      dataType="wstr"
+                      length="1024"
+                      name="ContactType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[CustomerClass]"
+                      dataType="wstr"
+                      length="1024"
+                      name="CustomerClass" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[DataSource]"
+                      dataType="wstr"
+                      length="1024"
+                      name="DataSource" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ArabicName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="ArabicName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[IsProspect]"
+                      dataType="bool"
+                      name="IsProspect" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ThirdName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="ThirdName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[NickName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="NickName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[ResidentialStatus]"
+                      dataType="wstr"
+                      length="1"
+                      name="ResidentialStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PreferredCommunicationFrequency]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PreferredCommunicationFrequency" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[MDM_DateOfBirth]"
+                      dataType="dbTimeStamp"
+                      name="MDM_DateOfBirth" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[MDM_Gender]"
+                      dataType="wstr"
+                      length="1024"
+                      name="MDM_Gender" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[MDM_Salutation]"
+                      dataType="wstr"
+                      length="1024"
+                      name="MDM_Salutation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[LeaseName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="LeaseName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PropertyCode]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PropertyCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[PropertyName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="PropertyName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[TenantStatus]"
+                      dataType="wstr"
+                      length="25"
+                      name="TenantStatus" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[LeaseTypeCode]"
+                      dataType="wstr"
+                      length="1024"
+                      name="LeaseTypeCode" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[LeaseType]"
+                      dataType="wstr"
+                      length="1024"
+                      name="LeaseType" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input].ExternalColumns[CategoryCode]"
+                      dataType="wstr"
+                      length="1024"
+                      name="CategoryCode" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="Consumes data from SQL Server, OLE DB, ODBC, or Oracle, using the corresponding .NET Framework data provider. Use a Transact-SQL statement to define the result set. For example, extract data from SQL Server with the .NET Framework data provider for SQL Server."
+              name="OLEDB_SRC_SunSum_TB_CustMast"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement used by the component to extract data."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT TOP (1000)
+      [SSID] AS SourceCustomerId
+ ,'SUN_SUM' AS SourceSystemName
+  ,1 AS [IsValid]
+  ,[CreatedDate]	
+  ,[FirstName]
+  ,[LastName]
+ ,[ID]
+  FROM [LANDING].[dbo].[LDG_SUNSUM_TXS]</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether to allow non-string external columns to be implicitly converted to strings at the output columns."
+                  name="AllowImplicitStringConversion">true</property>
+                <property
+                  dataType="System.String"
+                  description="The Source database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"dbo"."LDG_SUNSUM_TXS"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the mode to retrieve external column information"
+                  name="AccessMode"
+                  typeConverter="Microsoft.SqlServer.Dts.Pipeline.DataReaderSourceAdapter+EnumToStringConverter">2</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.DataReaderSourceAdapter</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_LANDING]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output]"
+                  name="ADO NET Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceSystemName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[SourceSystemName]"
+                      length="7"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[CreatedDate]"
+                      name="CreatedDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      length="1024"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[ID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[SourceCustomerId]"
+                      dataType="i8"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[SourceSystemName]"
+                      dataType="wstr"
+                      length="7"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[IsValid]"
+                      dataType="i4"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output]"
+                  isErrorOut="true"
+                  name="ADO NET Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[SourceSystemName]"
+                      dataType="wstr"
+                      length="7"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[CreatedDate]"
+                      name="CreatedDate" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      dataType="wstr"
+                      length="1024"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[FirstName]"
+                      name="FirstName" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[LastName]"
+                      name="LastName" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      dataType="i8"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_SunSum_Src_CustMast.Paths[ADO NET Destination Error Output]"
+              endId="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount.Inputs[Row Count Input 1]"
+              name="ADO NET Destination Error Output"
+              startId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Outputs[ADO NET Destination Error Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustMast.Paths[ADO NET Source Output]"
+              endId="Package\DFT_SunSum_Src_CustMast\Count_Row.Inputs[Row Count Input 1]"
+              name="ADO NET Source Output"
+              startId="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast.Outputs[ADO NET Source Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustMast.Paths[Data Conversion Output]"
+              endId="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast.Inputs[ADO NET Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DFT_SunSum_Src_CustMast.Paths[Row Count Output 1]"
+              endId="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast.Inputs[Data Conversion Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_SunSum_Src_CustMast\Count_Row.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{b5523bc7-a0fd-4e3e-9710-1104ba84377c}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\Expression Task.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{0a023a41-b5ec-40a0-b9fe-16d1d2e07789}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{d446dd0b-5f4e-497c-a8f4-32bd4f54cad2}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL Session end"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{06c2bb90-3ab0-4439-894b-91dff00a2998}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL Session end"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].[ETL_RUN]&#xA;SET &#xA;[SESSION_STATUS_UPD_TS] = GETDATE()&#xA;,[SESSION_STATUS] = ?&#xA;WHERE ETL_SESSION_ID=?&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{424a67db-b1d5-4f03-be7e-21dcb154ef9b}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[SOURCE_SYSTEM]&#xA;           ,[SOURCE_KEY_COUNT]&#xA;           ,[ETL_SOURCE_REJ_COUNT]&#xA;           )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;           ,?&#xA;           ,?&#xA;           ,?&#xA;           )" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::ErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c254f7e4-682c-4446-83c6-c382637679ec}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{0653C92F-88EE-402C-AE14-3188660BB3CD}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Run]&#xA;           (&#xA;      [ETL_EXECUTION_ID]&#xA;           ,[ETL_JOB_NAME]&#xA;           ,[SESSION_STATUS]&#xA;     ,[SESSION_START_TS]&#xA;     )&#xA;     VALUES&#xA;           (&#xA;      ?&#xA;     ,?&#xA;     ,?&#xA;     ,GETDATE()&#xA;     )&#xA;&#xA;&#xA;SELECT @@IDENTITY AS ID&#xA;"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="ID"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A6CD6BFD-D903-4C32-82D4-8044ECA052D9}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_SunSum_Src_CustMast" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{004B8809-7FB2-4559-827F-1C9297CB285F}"
+      DTS:From="Package\DFT_SunSum_Src_CustMast"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Expression Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{54f6a13a-afaf-47ee-a441-d0eec6668193}"
+      DTS:From="Package\Expression Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL Session end" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{34b87c89-e6c8-4673-84df-568c25c31961}"
+      DTS:From="Package\SQL Session end"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="138,240" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL Session end"
+          TopLeft="141.5,336.5" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="138,410" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="133,38" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="217.75,282">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,54.5"
+              Start="0,0"
+              End="0,47">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="221.25,378.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.5"
+              Start="0,0"
+              End="0,24">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DFT_SunSum_Src_CustMast"
+          TopLeft="106,131" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="214.25,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="213.75,173">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,67"
+              Start="0,0"
+              End="0,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package\Expression Task.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="177,42"
+          Id="{850913C4-5F9D-4BAA-BA67-727DE4041755}"
+          TopLeft="162,50" />
+        <NodeLayout
+          Size="174,42"
+          Id="{7A3DADB1-28A3-4E73-B529-5AA724D1B27A}"
+          TopLeft="655,85" />
+        <NodeLayout
+          Size="178,42"
+          Id="{7883365E-A346-42EC-BBFE-7AA97DA67D89}"
+          TopLeft="401,68" />
+        <EdgeLayout
+          Id="{B7583FA9-E382-47B8-BD71-6CE1F3BF4A08}"
+          TopLeft="339,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="62,18"
+              Start="0,0"
+              End="54.5,18">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="27,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27,0"
+                    Point2="31,0"
+                    Point3="31,4" />
+                  <mssgle:LineSegment
+                    End="31,14" />
+                  <mssgle:CubicBezierSegment
+                    Point1="31,14"
+                    Point2="31,18"
+                    Point3="35,18" />
+                  <mssgle:LineSegment
+                    End="54.5,18" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="{7D3A3B13-FFD3-4A58-82BB-4B8EAEC47272}"
+          TopLeft="579,89">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="76,17"
+              Start="0,0"
+              End="68.5,17">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="34,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="34,0"
+                    Point2="38,0"
+                    Point3="38,4" />
+                  <mssgle:LineSegment
+                    End="38,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="38,13"
+                    Point2="38,17"
+                    Point3="42,17" />
+                  <mssgle:LineSegment
+                    End="68.5,17" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DFT_SunSum_Src_CustMast">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT_SunSum_Src_CustMast\Count_Row"
+          TopLeft="206,118" />
+        <NodeLayout
+          Size="282,42"
+          Id="Package\DFT_SunSum_Src_CustMast\OLEDB_DST_SunSum_TB_Insert_CustMast"
+          TopLeft="189,281" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\DFT_SunSum_Src_CustMast\DCNV_CustMast"
+          TopLeft="198,200" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\DFT_SunSum_Src_CustMast\CNT_ErrorCount"
+          TopLeft="208,355" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\DFT_SunSum_Src_CustMast\OLEDB_SRC_SunSum_TB_CustMast"
+          TopLeft="188,29" />
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.Paths[ADO NET Destination Error Output]"
+          TopLeft="330,323">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-44,32"
+              Start="0,0"
+              End="-44,24.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12"
+                    Point2="0,16"
+                    Point3="-4,16" />
+                  <mssgle:LineSegment
+                    End="-40,16" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40,16"
+                    Point2="-44,16"
+                    Point3="-44,20" />
+                  <mssgle:LineSegment
+                    End="-44,24.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-99.214453125,21,154.42890625,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.Paths[Row Count Output 1]"
+          TopLeft="274,160">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.Paths[Data Conversion Output]"
+          TopLeft="275.5,242">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.5,39"
+              Start="0,0"
+              End="54.5,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,15.5"
+                    Point2="0,19.5"
+                    Point3="4,19.5" />
+                  <mssgle:LineSegment
+                    End="50.5,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="50.5,19.5"
+                    Point2="54.5,19.5"
+                    Point3="54.5,23.5" />
+                  <mssgle:LineSegment
+                    End="54.5,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.Paths[ADO NET Source Output]"
+          TopLeft="312,71">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-39.5,47"
+              Start="0,0"
+              End="-39.5,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5"
+                    Point2="0,23.5"
+                    Point3="-4,23.5" />
+                  <mssgle:LineSegment
+                    End="-35.5,23.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-35.5,23.5"
+                    Point2="-39.5,23.5"
+                    Point3="-39.5,27.5" />
+                  <mssgle:LineSegment
+                    End="-39.5,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\EXPR_change_status"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="553,61" />
+        <NodeLayout
+          Size="178,42"
+          Id="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError]\SQL_Update_Session"
+          TopLeft="316,60" />
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="237,81">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="79,0"
+              Start="0,0"
+              End="71.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="71.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_SunSum_Src_CustMast.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="494,81.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="59,0"
+              Start="0,0"
+              End="51.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="51.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

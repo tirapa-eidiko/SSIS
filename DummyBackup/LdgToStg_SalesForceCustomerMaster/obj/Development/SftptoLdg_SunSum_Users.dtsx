@@ -1,0 +1,2309 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/9/2019 4:06:32 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SSIS"
+  DTS:CreatorName="SSIS\Administrator"
+  DTS:DTSID="{71A3A3EA-620F-4207-81F9-BA146E87D086}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="SftptoLdg_SunSum_Users"
+  DTS:PackageType="5"
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{BDBEDD29-6AC6-4D02-9E91-DE2119E17EF3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{13FD90FB-4F8C-471F-8DFD-E1DA40EC2FFB}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Administrator\SourceFile\Sheet.xlsx;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 1]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{18BD4F59-FBBF-4F5B-918B-89E352E77C80}"
+      DTS:ObjectName="Excel Connection Manager 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Administrator\SourceFile\Sunsational redemption Sample.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 2]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A772B45D-95E4-4762-8AC4-F7CE1132D34A}"
+      DTS:ObjectName="Excel Connection Manager 2">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Administrator\SourceFile\Sheet.xlsx;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 3]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{C89F4EE1-CB6F-4DFF-A6B1-57E94F33E44C}"
+      DTS:ObjectName="Excel Connection Manager 3">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Administrator\Documents\New folder\Sunsational redemption Sample .xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager 4]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{2AF18C32-D6A6-4283-BFC6-99F7BCE5AD9E}"
+      DTS:ObjectName="Excel Connection Manager 4">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=C:\Users\Administrator\Documents\New folder\Sunsational redemption Sample .xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Kotesh.Landing.Kotesh]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1B99608E-B365-44C9-84A7-0D8F069D498C}"
+      DTS:ObjectName="Kotesh.Landing.Kotesh">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=Kotesh;User ID=Kotesh;Initial Catalog=Landing;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAHsbwZ0/gcUObt7bT5gsI5QAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACUX7Oe0fZ6BeHin5v55AI2qB/nPRIVdpH4Y71yH8NP9AAAAAAOgAAAAAIAACAAAABYALUOPdDqdlfRIZNYf3NhmMt07zTmGDLix67OGtajhBAAAADVkI6NIz6DC0i3M2aSX/oxQAAAAD5VCvQG5P1ghQpgsGkrCEuyZO6xiTHneEbZgaF3F0itee4fM6NK++qujUDmZRFH3NZWFoZPP2mmyXW6cglt2Uc</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FBFB2E68-CB5B-4FCB-AAE4-EA864F5F9289}"
+      DTS:ObjectName="SSIS\MDMSQLSERVER.LANDING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=LANDING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Read Data"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{D263BB7D-55F7-4121-852C-670FCC2968CF}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Read Data"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Read Data\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[offer]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="offer"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[offer]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FirstName"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[FirstName]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="LastName"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[LastName]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[tenant]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tenant"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[OrderLocation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="OrderLocation"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[OrderLocation]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[Destination]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Destination"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[Destination]" />
+                    <inputColumn
+                      refId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input].Columns[user]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="user"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of offer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of offer]"
+                      name="Copy of offer"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[offer]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="1024"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FirstName]"
+                      name="Copy of FirstName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[FirstName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LastName]"
+                      name="Copy of LastName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[LastName]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of tenant]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of tenant]"
+                      name="Copy of tenant"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OrderLocation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OrderLocation]"
+                      name="Copy of OrderLocation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[OrderLocation]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Destination]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Destination]"
+                      name="Copy of Destination"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[Destination]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of user]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of user]"
+                      name="Copy of user"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Read Data\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Read Data\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Read Data\Derived Column.Inputs[Derived Column Input].Columns[user]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="user"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]" />
+                    <inputColumn
+                      refId="Package\Read Data\Derived Column.Inputs[Derived Column Input].Columns[tenant]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="tenant"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Read Data\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Read Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[FirstName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[FirstName]"
+                      name="FirstName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[TOKEN](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]}," ",([TOKENCOUNT](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]}," ")))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(user," ",(TOKENCOUNT(user," ")))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[LastName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[LastName]"
+                      name="LastName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[TOKEN](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]}," ",[TOKENCOUNT](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]}," "))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(user," ",TOKENCOUNT(user," "))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[OrderLocation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[OrderLocation]"
+                      name="OrderLocation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[TOKEN](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]},"|",1)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(tenant,"|",1)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[Destination]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="255"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Output].Columns[Destination]"
+                      name="Destination"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[TOKEN](#{Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]},"|",2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">TOKEN(tenant,"|",2)</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Read Data\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Read Data\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Read Data\Excel Source"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="Excel Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">'Sheet 1 - Sunsational redemptio$'</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Read Data\Excel Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager 3]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager 3]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Read Data\Excel Source.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[createdAt]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[createdAt]"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[createdAt]"
+                      name="createdAt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[offer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[offer]"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[offer]"
+                      name="offer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[user]"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[user]"
+                      name="user"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[tenant]"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Output].Columns[tenant]"
+                      name="tenant"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[createdAt]"
+                      dataType="wstr"
+                      length="255"
+                      name="createdAt" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[offer]"
+                      dataType="wstr"
+                      length="255"
+                      name="offer" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[user]"
+                      dataType="wstr"
+                      length="255"
+                      name="user" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[tenant]"
+                      dataType="wstr"
+                      length="255"
+                      name="tenant" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F5]"
+                      dataType="wstr"
+                      length="255"
+                      name="F5" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F6]"
+                      dataType="wstr"
+                      length="255"
+                      name="F6" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F7]"
+                      dataType="wstr"
+                      length="255"
+                      name="F7" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F8]"
+                      dataType="wstr"
+                      length="255"
+                      name="F8" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F9]"
+                      dataType="wstr"
+                      length="255"
+                      name="F9" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F10]"
+                      dataType="wstr"
+                      length="255"
+                      name="F10" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F11]"
+                      dataType="wstr"
+                      length="255"
+                      name="F11" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F12]"
+                      dataType="wstr"
+                      length="255"
+                      name="F12" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F13]"
+                      dataType="wstr"
+                      length="255"
+                      name="F13" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F14]"
+                      dataType="wstr"
+                      length="255"
+                      name="F14" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F15]"
+                      dataType="wstr"
+                      length="255"
+                      name="F15" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F16]"
+                      dataType="wstr"
+                      length="255"
+                      name="F16" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F17]"
+                      dataType="wstr"
+                      length="255"
+                      name="F17" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F18]"
+                      dataType="wstr"
+                      length="255"
+                      name="F18" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F19]"
+                      dataType="wstr"
+                      length="255"
+                      name="F19" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F20]"
+                      dataType="wstr"
+                      length="255"
+                      name="F20" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F21]"
+                      dataType="wstr"
+                      length="255"
+                      name="F21" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F22]"
+                      dataType="wstr"
+                      length="255"
+                      name="F22" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F23]"
+                      dataType="wstr"
+                      length="255"
+                      name="F23" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F24]"
+                      dataType="wstr"
+                      length="255"
+                      name="F24" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F25]"
+                      dataType="wstr"
+                      length="255"
+                      name="F25" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F26]"
+                      dataType="wstr"
+                      length="255"
+                      name="F26" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F27]"
+                      dataType="wstr"
+                      length="255"
+                      name="F27" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F28]"
+                      dataType="wstr"
+                      length="255"
+                      name="F28" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F29]"
+                      dataType="wstr"
+                      length="255"
+                      name="F29" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F30]"
+                      dataType="wstr"
+                      length="255"
+                      name="F30" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F31]"
+                      dataType="wstr"
+                      length="255"
+                      name="F31" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F32]"
+                      dataType="wstr"
+                      length="255"
+                      name="F32" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F33]"
+                      dataType="wstr"
+                      length="255"
+                      name="F33" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F34]"
+                      dataType="wstr"
+                      length="255"
+                      name="F34" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F35]"
+                      dataType="wstr"
+                      length="255"
+                      name="F35" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F36]"
+                      dataType="wstr"
+                      length="255"
+                      name="F36" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F37]"
+                      dataType="wstr"
+                      length="255"
+                      name="F37" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F38]"
+                      dataType="wstr"
+                      length="255"
+                      name="F38" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F39]"
+                      dataType="wstr"
+                      length="255"
+                      name="F39" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F40]"
+                      dataType="wstr"
+                      length="255"
+                      name="F40" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F41]"
+                      dataType="wstr"
+                      length="255"
+                      name="F41" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F42]"
+                      dataType="wstr"
+                      length="255"
+                      name="F42" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F43]"
+                      dataType="wstr"
+                      length="255"
+                      name="F43" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F44]"
+                      dataType="wstr"
+                      length="255"
+                      name="F44" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F45]"
+                      dataType="wstr"
+                      length="255"
+                      name="F45" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F46]"
+                      dataType="wstr"
+                      length="255"
+                      name="F46" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F47]"
+                      dataType="wstr"
+                      length="255"
+                      name="F47" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F48]"
+                      dataType="wstr"
+                      length="255"
+                      name="F48" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F49]"
+                      dataType="wstr"
+                      length="255"
+                      name="F49" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F50]"
+                      dataType="wstr"
+                      length="255"
+                      name="F50" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F51]"
+                      dataType="wstr"
+                      length="255"
+                      name="F51" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F52]"
+                      dataType="wstr"
+                      length="255"
+                      name="F52" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F53]"
+                      dataType="wstr"
+                      length="255"
+                      name="F53" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F54]"
+                      dataType="wstr"
+                      length="255"
+                      name="F54" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F55]"
+                      dataType="wstr"
+                      length="255"
+                      name="F55" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F56]"
+                      dataType="wstr"
+                      length="255"
+                      name="F56" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F57]"
+                      dataType="wstr"
+                      length="255"
+                      name="F57" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F58]"
+                      dataType="wstr"
+                      length="255"
+                      name="F58" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F59]"
+                      dataType="wstr"
+                      length="255"
+                      name="F59" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F60]"
+                      dataType="wstr"
+                      length="255"
+                      name="F60" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F61]"
+                      dataType="wstr"
+                      length="255"
+                      name="F61" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F62]"
+                      dataType="wstr"
+                      length="255"
+                      name="F62" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F63]"
+                      dataType="wstr"
+                      length="255"
+                      name="F63" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F64]"
+                      dataType="wstr"
+                      length="255"
+                      name="F64" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F65]"
+                      dataType="wstr"
+                      length="255"
+                      name="F65" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F66]"
+                      dataType="wstr"
+                      length="255"
+                      name="F66" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F67]"
+                      dataType="wstr"
+                      length="255"
+                      name="F67" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F68]"
+                      dataType="wstr"
+                      length="255"
+                      name="F68" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F69]"
+                      dataType="wstr"
+                      length="255"
+                      name="F69" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F70]"
+                      dataType="wstr"
+                      length="255"
+                      name="F70" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F71]"
+                      dataType="wstr"
+                      length="255"
+                      name="F71" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F72]"
+                      dataType="wstr"
+                      length="255"
+                      name="F72" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F73]"
+                      dataType="wstr"
+                      length="255"
+                      name="F73" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F74]"
+                      dataType="wstr"
+                      length="255"
+                      name="F74" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F75]"
+                      dataType="wstr"
+                      length="255"
+                      name="F75" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F76]"
+                      dataType="wstr"
+                      length="255"
+                      name="F76" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F77]"
+                      dataType="wstr"
+                      length="255"
+                      name="F77" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F78]"
+                      dataType="wstr"
+                      length="255"
+                      name="F78" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F79]"
+                      dataType="wstr"
+                      length="255"
+                      name="F79" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F80]"
+                      dataType="wstr"
+                      length="255"
+                      name="F80" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F81]"
+                      dataType="wstr"
+                      length="255"
+                      name="F81" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F82]"
+                      dataType="wstr"
+                      length="255"
+                      name="F82" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F83]"
+                      dataType="wstr"
+                      length="255"
+                      name="F83" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F84]"
+                      dataType="wstr"
+                      length="255"
+                      name="F84" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F85]"
+                      dataType="wstr"
+                      length="255"
+                      name="F85" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F86]"
+                      dataType="wstr"
+                      length="255"
+                      name="F86" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F87]"
+                      dataType="wstr"
+                      length="255"
+                      name="F87" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F88]"
+                      dataType="wstr"
+                      length="255"
+                      name="F88" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F89]"
+                      dataType="wstr"
+                      length="255"
+                      name="F89" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F90]"
+                      dataType="wstr"
+                      length="255"
+                      name="F90" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F91]"
+                      dataType="wstr"
+                      length="255"
+                      name="F91" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F92]"
+                      dataType="wstr"
+                      length="255"
+                      name="F92" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F93]"
+                      dataType="wstr"
+                      length="255"
+                      name="F93" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F94]"
+                      dataType="wstr"
+                      length="255"
+                      name="F94" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F95]"
+                      dataType="wstr"
+                      length="255"
+                      name="F95" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F96]"
+                      dataType="wstr"
+                      length="255"
+                      name="F96" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F97]"
+                      dataType="wstr"
+                      length="255"
+                      name="F97" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F98]"
+                      dataType="wstr"
+                      length="255"
+                      name="F98" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F99]"
+                      dataType="wstr"
+                      length="255"
+                      name="F99" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F100]"
+                      dataType="wstr"
+                      length="255"
+                      name="F100" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F101]"
+                      dataType="wstr"
+                      length="255"
+                      name="F101" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F102]"
+                      dataType="wstr"
+                      length="255"
+                      name="F102" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F103]"
+                      dataType="wstr"
+                      length="255"
+                      name="F103" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F104]"
+                      dataType="wstr"
+                      length="255"
+                      name="F104" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F105]"
+                      dataType="wstr"
+                      length="255"
+                      name="F105" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F106]"
+                      dataType="wstr"
+                      length="255"
+                      name="F106" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F107]"
+                      dataType="wstr"
+                      length="255"
+                      name="F107" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F108]"
+                      dataType="wstr"
+                      length="255"
+                      name="F108" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F109]"
+                      dataType="wstr"
+                      length="255"
+                      name="F109" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F110]"
+                      dataType="wstr"
+                      length="255"
+                      name="F110" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F111]"
+                      dataType="wstr"
+                      length="255"
+                      name="F111" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F112]"
+                      dataType="wstr"
+                      length="255"
+                      name="F112" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F113]"
+                      dataType="wstr"
+                      length="255"
+                      name="F113" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F114]"
+                      dataType="wstr"
+                      length="255"
+                      name="F114" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F115]"
+                      dataType="wstr"
+                      length="255"
+                      name="F115" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F116]"
+                      dataType="wstr"
+                      length="255"
+                      name="F116" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F117]"
+                      dataType="wstr"
+                      length="255"
+                      name="F117" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F118]"
+                      dataType="wstr"
+                      length="255"
+                      name="F118" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F119]"
+                      dataType="wstr"
+                      length="255"
+                      name="F119" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F120]"
+                      dataType="wstr"
+                      length="255"
+                      name="F120" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F121]"
+                      dataType="wstr"
+                      length="255"
+                      name="F121" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F122]"
+                      dataType="wstr"
+                      length="255"
+                      name="F122" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F123]"
+                      dataType="wstr"
+                      length="255"
+                      name="F123" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F124]"
+                      dataType="wstr"
+                      length="255"
+                      name="F124" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F125]"
+                      dataType="wstr"
+                      length="255"
+                      name="F125" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F126]"
+                      dataType="wstr"
+                      length="255"
+                      name="F126" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F127]"
+                      dataType="wstr"
+                      length="255"
+                      name="F127" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F128]"
+                      dataType="wstr"
+                      length="255"
+                      name="F128" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F129]"
+                      dataType="wstr"
+                      length="255"
+                      name="F129" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F130]"
+                      dataType="wstr"
+                      length="255"
+                      name="F130" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F131]"
+                      dataType="wstr"
+                      length="255"
+                      name="F131" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F132]"
+                      dataType="wstr"
+                      length="255"
+                      name="F132" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F133]"
+                      dataType="wstr"
+                      length="255"
+                      name="F133" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F134]"
+                      dataType="wstr"
+                      length="255"
+                      name="F134" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F135]"
+                      dataType="wstr"
+                      length="255"
+                      name="F135" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F136]"
+                      dataType="wstr"
+                      length="255"
+                      name="F136" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F137]"
+                      dataType="wstr"
+                      length="255"
+                      name="F137" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F138]"
+                      dataType="wstr"
+                      length="255"
+                      name="F138" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F139]"
+                      dataType="wstr"
+                      length="255"
+                      name="F139" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F140]"
+                      dataType="wstr"
+                      length="255"
+                      name="F140" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F141]"
+                      dataType="wstr"
+                      length="255"
+                      name="F141" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F142]"
+                      dataType="wstr"
+                      length="255"
+                      name="F142" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F143]"
+                      dataType="wstr"
+                      length="255"
+                      name="F143" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F144]"
+                      dataType="wstr"
+                      length="255"
+                      name="F144" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F145]"
+                      dataType="wstr"
+                      length="255"
+                      name="F145" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F146]"
+                      dataType="wstr"
+                      length="255"
+                      name="F146" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F147]"
+                      dataType="wstr"
+                      length="255"
+                      name="F147" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F148]"
+                      dataType="wstr"
+                      length="255"
+                      name="F148" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F149]"
+                      dataType="wstr"
+                      length="255"
+                      name="F149" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F150]"
+                      dataType="wstr"
+                      length="255"
+                      name="F150" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F151]"
+                      dataType="wstr"
+                      length="255"
+                      name="F151" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F152]"
+                      dataType="wstr"
+                      length="255"
+                      name="F152" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F153]"
+                      dataType="wstr"
+                      length="255"
+                      name="F153" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F154]"
+                      dataType="wstr"
+                      length="255"
+                      name="F154" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F155]"
+                      dataType="wstr"
+                      length="255"
+                      name="F155" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F156]"
+                      dataType="wstr"
+                      length="255"
+                      name="F156" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F157]"
+                      dataType="wstr"
+                      length="255"
+                      name="F157" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F158]"
+                      dataType="wstr"
+                      length="255"
+                      name="F158" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F159]"
+                      dataType="wstr"
+                      length="255"
+                      name="F159" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F160]"
+                      dataType="wstr"
+                      length="255"
+                      name="F160" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F161]"
+                      dataType="wstr"
+                      length="255"
+                      name="F161" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F162]"
+                      dataType="wstr"
+                      length="255"
+                      name="F162" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F163]"
+                      dataType="wstr"
+                      length="255"
+                      name="F163" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F164]"
+                      dataType="wstr"
+                      length="255"
+                      name="F164" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F165]"
+                      dataType="wstr"
+                      length="255"
+                      name="F165" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F166]"
+                      dataType="wstr"
+                      length="255"
+                      name="F166" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F167]"
+                      dataType="wstr"
+                      length="255"
+                      name="F167" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F168]"
+                      dataType="wstr"
+                      length="255"
+                      name="F168" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F169]"
+                      dataType="wstr"
+                      length="255"
+                      name="F169" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F170]"
+                      dataType="wstr"
+                      length="255"
+                      name="F170" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F171]"
+                      dataType="wstr"
+                      length="255"
+                      name="F171" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F172]"
+                      dataType="wstr"
+                      length="255"
+                      name="F172" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F173]"
+                      dataType="wstr"
+                      length="255"
+                      name="F173" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F174]"
+                      dataType="wstr"
+                      length="255"
+                      name="F174" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F175]"
+                      dataType="wstr"
+                      length="255"
+                      name="F175" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F176]"
+                      dataType="wstr"
+                      length="255"
+                      name="F176" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F177]"
+                      dataType="wstr"
+                      length="255"
+                      name="F177" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F178]"
+                      dataType="wstr"
+                      length="255"
+                      name="F178" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F179]"
+                      dataType="wstr"
+                      length="255"
+                      name="F179" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F180]"
+                      dataType="wstr"
+                      length="255"
+                      name="F180" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F181]"
+                      dataType="wstr"
+                      length="255"
+                      name="F181" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F182]"
+                      dataType="wstr"
+                      length="255"
+                      name="F182" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F183]"
+                      dataType="wstr"
+                      length="255"
+                      name="F183" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F184]"
+                      dataType="wstr"
+                      length="255"
+                      name="F184" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F185]"
+                      dataType="wstr"
+                      length="255"
+                      name="F185" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F186]"
+                      dataType="wstr"
+                      length="255"
+                      name="F186" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F187]"
+                      dataType="wstr"
+                      length="255"
+                      name="F187" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F188]"
+                      dataType="wstr"
+                      length="255"
+                      name="F188" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F189]"
+                      dataType="wstr"
+                      length="255"
+                      name="F189" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F190]"
+                      dataType="wstr"
+                      length="255"
+                      name="F190" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F191]"
+                      dataType="wstr"
+                      length="255"
+                      name="F191" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F192]"
+                      dataType="wstr"
+                      length="255"
+                      name="F192" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F193]"
+                      dataType="wstr"
+                      length="255"
+                      name="F193" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F194]"
+                      dataType="wstr"
+                      length="255"
+                      name="F194" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F195]"
+                      dataType="wstr"
+                      length="255"
+                      name="F195" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F196]"
+                      dataType="wstr"
+                      length="255"
+                      name="F196" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F197]"
+                      dataType="wstr"
+                      length="255"
+                      name="F197" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F198]"
+                      dataType="wstr"
+                      length="255"
+                      name="F198" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F199]"
+                      dataType="wstr"
+                      length="255"
+                      name="F199" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F200]"
+                      dataType="wstr"
+                      length="255"
+                      name="F200" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F201]"
+                      dataType="wstr"
+                      length="255"
+                      name="F201" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F202]"
+                      dataType="wstr"
+                      length="255"
+                      name="F202" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F203]"
+                      dataType="wstr"
+                      length="255"
+                      name="F203" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F204]"
+                      dataType="wstr"
+                      length="255"
+                      name="F204" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F205]"
+                      dataType="wstr"
+                      length="255"
+                      name="F205" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F206]"
+                      dataType="wstr"
+                      length="255"
+                      name="F206" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F207]"
+                      dataType="wstr"
+                      length="255"
+                      name="F207" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F208]"
+                      dataType="wstr"
+                      length="255"
+                      name="F208" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F209]"
+                      dataType="wstr"
+                      length="255"
+                      name="F209" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F210]"
+                      dataType="wstr"
+                      length="255"
+                      name="F210" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F211]"
+                      dataType="wstr"
+                      length="255"
+                      name="F211" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F212]"
+                      dataType="wstr"
+                      length="255"
+                      name="F212" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F213]"
+                      dataType="wstr"
+                      length="255"
+                      name="F213" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F214]"
+                      dataType="wstr"
+                      length="255"
+                      name="F214" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F215]"
+                      dataType="wstr"
+                      length="255"
+                      name="F215" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F216]"
+                      dataType="wstr"
+                      length="255"
+                      name="F216" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F217]"
+                      dataType="wstr"
+                      length="255"
+                      name="F217" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F218]"
+                      dataType="wstr"
+                      length="255"
+                      name="F218" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F219]"
+                      dataType="wstr"
+                      length="255"
+                      name="F219" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F220]"
+                      dataType="wstr"
+                      length="255"
+                      name="F220" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F221]"
+                      dataType="wstr"
+                      length="255"
+                      name="F221" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F222]"
+                      dataType="wstr"
+                      length="255"
+                      name="F222" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F223]"
+                      dataType="wstr"
+                      length="255"
+                      name="F223" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F224]"
+                      dataType="wstr"
+                      length="255"
+                      name="F224" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F225]"
+                      dataType="wstr"
+                      length="255"
+                      name="F225" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F226]"
+                      dataType="wstr"
+                      length="255"
+                      name="F226" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F227]"
+                      dataType="wstr"
+                      length="255"
+                      name="F227" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F228]"
+                      dataType="wstr"
+                      length="255"
+                      name="F228" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F229]"
+                      dataType="wstr"
+                      length="255"
+                      name="F229" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F230]"
+                      dataType="wstr"
+                      length="255"
+                      name="F230" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F231]"
+                      dataType="wstr"
+                      length="255"
+                      name="F231" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F232]"
+                      dataType="wstr"
+                      length="255"
+                      name="F232" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F233]"
+                      dataType="wstr"
+                      length="255"
+                      name="F233" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F234]"
+                      dataType="wstr"
+                      length="255"
+                      name="F234" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F235]"
+                      dataType="wstr"
+                      length="255"
+                      name="F235" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F236]"
+                      dataType="wstr"
+                      length="255"
+                      name="F236" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F237]"
+                      dataType="wstr"
+                      length="255"
+                      name="F237" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F238]"
+                      dataType="wstr"
+                      length="255"
+                      name="F238" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F239]"
+                      dataType="wstr"
+                      length="255"
+                      name="F239" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F240]"
+                      dataType="wstr"
+                      length="255"
+                      name="F240" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F241]"
+                      dataType="wstr"
+                      length="255"
+                      name="F241" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F242]"
+                      dataType="wstr"
+                      length="255"
+                      name="F242" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F243]"
+                      dataType="wstr"
+                      length="255"
+                      name="F243" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F244]"
+                      dataType="wstr"
+                      length="255"
+                      name="F244" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F245]"
+                      dataType="wstr"
+                      length="255"
+                      name="F245" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F246]"
+                      dataType="wstr"
+                      length="255"
+                      name="F246" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F247]"
+                      dataType="wstr"
+                      length="255"
+                      name="F247" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F248]"
+                      dataType="wstr"
+                      length="255"
+                      name="F248" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F249]"
+                      dataType="wstr"
+                      length="255"
+                      name="F249" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F250]"
+                      dataType="wstr"
+                      length="255"
+                      name="F250" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F251]"
+                      dataType="wstr"
+                      length="255"
+                      name="F251" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F252]"
+                      dataType="wstr"
+                      length="255"
+                      name="F252" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F253]"
+                      dataType="wstr"
+                      length="255"
+                      name="F253" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F254]"
+                      dataType="wstr"
+                      length="255"
+                      name="F254" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F255]"
+                      dataType="wstr"
+                      length="255"
+                      name="F255" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Output].ExternalColumns[F256]"
+                      dataType="wstr"
+                      length="255"
+                      name="F256" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[createdAt]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[createdAt]"
+                      name="createdAt" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[offer]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[offer]"
+                      name="offer" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[user]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[user]"
+                      name="user" />
+                    <outputColumn
+                      refId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[tenant]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Read Data\Excel Source.Outputs[Excel Source Error Output].Columns[tenant]"
+                      name="tenant" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Read Data\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[LDG_SUNSUM_TXS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Read Data\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  connectionManagerRefId="Package.ConnectionManagers[SSIS\MDMSQLSERVER.LANDING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of offer]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Copy of offer"
+                      externalMetadataColumnId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OfferDescription]"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of offer]" />
+                    <inputColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of FirstName]"
+                      cachedDataType="wstr"
+                      cachedLength="1024"
+                      cachedName="Copy of FirstName"
+                      externalMetadataColumnId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of FirstName]" />
+                    <inputColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of LastName]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Copy of LastName"
+                      externalMetadataColumnId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of LastName]" />
+                    <inputColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of OrderLocation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Copy of OrderLocation"
+                      externalMetadataColumnId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderLocation]"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of OrderLocation]" />
+                    <inputColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Copy of Destination]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Copy of Destination"
+                      externalMetadataColumnId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      lineageId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of Destination]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDate]"
+                      dataType="dbTimeStamp"
+                      name="CreatedDate" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OfferDescription]"
+                      dataType="wstr"
+                      length="1024"
+                      name="OfferDescription" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[FirstName]"
+                      dataType="wstr"
+                      length="1024"
+                      name="FirstName" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LastName]"
+                      dataType="wstr"
+                      length="255"
+                      name="LastName" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[EmailId]"
+                      dataType="wstr"
+                      length="255"
+                      name="EmailId" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[OrderLocation]"
+                      dataType="wstr"
+                      length="255"
+                      name="OrderLocation" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Destination]"
+                      dataType="wstr"
+                      length="255"
+                      name="Destination" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SSID]"
+                      dataType="i8"
+                      name="SSID" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Read Data\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Read Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Read Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Read Data\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Read Data.Paths[Data Conversion Output]"
+              endId="Package\Read Data\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Read Data\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Read Data.Paths[Derived Column Output]"
+              endId="Package\Read Data\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Read Data\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Read Data.Paths[Excel Source Output]"
+              endId="Package\Read Data\Derived Column.Inputs[Derived Column Input]"
+              name="Excel Source Output"
+              startId="Package\Read Data\Excel Source.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="128,42"
+          Id="Package\Read Data"
+          TopLeft="177,87" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Read Data">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Read Data\OLE DB Destination"
+          TopLeft="103,257" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\Read Data\Data Conversion"
+          TopLeft="99,181" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Read Data\Derived Column"
+          TopLeft="314,126" />
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Read Data\Excel Source"
+          TopLeft="362,0" />
+        <EdgeLayout
+          Id="Package\Read Data.Paths[Excel Source Output]"
+          TopLeft="431.5,42">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40.5,84"
+              Start="0,0"
+              End="-40.5,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="-4,42" />
+                  <mssgle:LineSegment
+                    End="-36.5,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36.5,42"
+                    Point2="-40.5,42"
+                    Point3="-40.5,46" />
+                  <mssgle:LineSegment
+                    End="-40.5,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Read Data.Paths[Derived Column Output]"
+          TopLeft="314,147">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-59,55"
+              Start="0,0"
+              End="-51.5,55">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-25.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-25.5,0"
+                    Point2="-29.5,0"
+                    Point3="-29.5,4" />
+                  <mssgle:LineSegment
+                    End="-29.5,51" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.5,51"
+                    Point2="-29.5,55"
+                    Point3="-33.5,55" />
+                  <mssgle:LineSegment
+                    End="-51.5,55" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Read Data.Paths[Data Conversion Output]"
+          TopLeft="177,223">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11.5,34"
+              Start="0,0"
+              End="11.5,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13"
+                    Point2="0,17"
+                    Point3="4,17" />
+                  <mssgle:LineSegment
+                    End="7.5,17" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.5,17"
+                    Point2="11.5,17"
+                    Point3="11.5,21" />
+                  <mssgle:LineSegment
+                    End="11.5,26.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Read Data\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Read Data\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

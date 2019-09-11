@@ -1,0 +1,1590 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/7/2019 12:31:46 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SSIS"
+  DTS:CreatorName="SSIS\Administrator"
+  DTS:DTSID="{727D242E-5A68-499B-B1CC-90418AA02099}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="StgToEdw_SourceImage_Identification"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{F85708BE-CBF9-464C-92A2-2A777E188026}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_EDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1872D591-F432-4EC0-ABA8-F1AA844581B1}"
+      DTS:ObjectName="OLEDB_EDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_LOG]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5A2B325C-6E8E-4650-87E2-7FD05893D41D}"
+      DTS:ObjectName="OLEDB_LOG">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=EDWSTGLOGDB;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[OLEDB_STAGING]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3A6B3BE4-AC6C-4B3C-815D-F97E0763F674}"
+      DTS:ObjectName="OLEDB_STAGING">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SSIS\MDMSQLSERVER;Initial Catalog=STAGING;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C660A6CB-6D9D-467D-B532-EB0D0F35B625}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertErrorRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{59724CB8-A509-441B-9BC1-C20B590D115E}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="InsertRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{29147487-8E70-44F2-AE59-FD1C7DEED906}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="RowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{78D9944C-7062-4836-B2D6-60A3E1ED737F}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="SessionId">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{FC772D6A-67DB-460E-94DB-3860F109F60F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceSystem">
+      <DTS:VariableValue
+        DTS:DataType="8">TB_Source_Image_Address</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{24084EA7-1C2C-4360-A115-D934FBD11F30}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Status">
+      <DTS:VariableValue
+        DTS:DataType="8">INPROCESS</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{151A30A1-893B-4D29-910A-094DECB9174B}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::InsertErrorRowCount]+@[User::UpdateErrorRowCount]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TotalErrorCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B9855302-2A5C-4B6D-8423-BDE9562943A7}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="UpdateErrorRowCount">
+      <DTS:VariableValue
+        DTS:DataType="3">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_TB_Src_Img_Id"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{2b677217-5f3b-450a-a20c-0c79f0153f2d}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_TB_Src_Img_Id"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{e2726c87-a1ea-47ea-922b-866481f766b7}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1"
+          DTS:MaxErrorCount="10">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{58c51f51-da13-4b0e-a573-d149d51c547f}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{44263986-4f2d-457a-b572-be65a4f2c64e}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="EXPR_Change_Status">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::Status]=&quot;FAILED&quot;" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_Insert_OnError"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{42057019-5483-451f-a113-01648ed5965a}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_Insert_OnError">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+                  SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Error_Log]&#xA;           ([ETL_SESSION_ID]&#xA;           ,[ErrorCode]&#xA;           ,[ErrorMessage]&#xA;           ,[ErrorPackageName]&#xA;           ,[DateTime])&#xA;     VALUES&#xA;           (?,?,?,?,GETDATE())&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="1"
+                    SQLTask:DtsVariableName="System::ErrorCode"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="2"
+                    SQLTask:DtsVariableName="System::ErrorDescription"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="3"
+                    SQLTask:DtsVariableName="System::PackageName"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="129"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:CreationName="Microsoft.ExecuteSQLTask"
+              DTS:Description="Execute SQL Task"
+              DTS:DTSID="{ca8a58a3-8ac3-45bb-a02c-1fafa5e5e65b}"
+              DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="SQL_UpdateSessionID">
+              <DTS:Variables />
+              <DTS:ObjectData>
+                <SQLTask:SqlTaskData
+                  SQLTask:Connection="{CC58EDE2-76C8-42CB-B2D0-7D516F281F82}"
+                  SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN&#xA; SET&#xA;  [SESSION_STATUS_UPD_TS] = GETDATE()&#xA;  ,[SESSION_STATUS]='Failed'&#xA; WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+                  <SQLTask:ParameterBinding
+                    SQLTask:ParameterName="0"
+                    SQLTask:DtsVariableName="User::SessionId"
+                    SQLTask:ParameterDirection="Input"
+                    SQLTask:DataType="3"
+                    SQLTask:ParameterSize="-1" />
+                </SQLTask:SqlTaskData>
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{77aa61c8-05d4-4a55-87ca-ae6d9ca89e7d}"
+              DTS:From="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\EXPR_Change_Status"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_UpdateSessionID" />
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+              DTS:CreationName=""
+              DTS:DTSID="{b562507f-5024-4e73-be20-9d8514b744c4}"
+              DTS:From="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint 1"
+              DTS:To="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_Insert_OnError" />
+          </DTS:PrecedenceConstraints>
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="CNT_InsertErrorCount">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLEDB_DST_TB_Insert_Src_Img_Id"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TB_Source_Image_Identification]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_EDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_EDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="IgnoreFailure"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[SourceCustomerId]"
+                      cachedDataType="i8"
+                      cachedName="SourceCustomerId"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Source_Customer_Id]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[SourceSystemName]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SourceSystemName"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Source_System_Name]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[IdNumber]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="IdNumber"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Number]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdNumber]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[IdDescription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="480"
+                      cachedName="IdDescription"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Description]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdDescription]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[IdIssueLocation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="IdIssueLocation"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Issue_Location]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdIssueLocation]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[IdExpiryDt]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="IdExpiryDt"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Expiry_Dt]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[STARTDT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="STARTDT"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Start_Date]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[STARTDT]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[ENDDT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="ENDDT"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[End_Date]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[ENDDT]" />
+                    <inputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].Columns[Last_Update_TS]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Last_Update_TS"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Last_Update_TS]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[Last_Update_TS]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id]"
+                      dataType="i8"
+                      name="Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Source_Customer_Id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="Source_Customer_Id" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Source_System_Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Source_System_Name" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Number]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="Id_Number" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="480"
+                      name="Id_Description" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Issue_Location]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="Id_Issue_Location" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Id_Expiry_Dt]"
+                      dataType="dbTimeStamp"
+                      name="Id_Expiry_Dt" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Start_Date]"
+                      dataType="dbTimeStamp"
+                      name="Start_Date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[End_Date]"
+                      dataType="dbTimeStamp"
+                      name="End_Date" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Insert_TS]"
+                      dataType="dbTimeStamp"
+                      name="Insert_TS" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input].ExternalColumns[Last_Update_TS]"
+                      dataType="dbTimeStamp"
+                      name="Last_Update_TS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLEDB_SRC_TB_Src_Img_Id"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[STG_CustomerIdentity]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT        ID, SourceCustomerId, SourceSystemName,GETDATE()  AS Last_Update_TS, IdNumber,
+IdDescription, IdIssueLocation, IdExpiryDt, STARTDT, ENDDT, RecordTimeStamp, IsValid
+FROM            STG_CustomerIdentity AS CM
+WHERE        EXISTS
+        (SELECT        1 AS Expr1
+        FROM            STG_CustomerMaster AS CUST
+        WHERE        (IsValid = 1) AND  (IsProspect=0) AND 
+		(SourceCustomerId = CM.SourceCustomerId) AND 
+		(SourceSystemName = CM.SourceSystemName)
+		
+	)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[OLEDB_STAGING]"
+                  connectionManagerRefId="Package.ConnectionManagers[OLEDB_STAGING]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="IgnoreFailure"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      length="50"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[SourceSystemName]"
+                      name="SourceSystemName"
+                      truncationRowDisposition="IgnoreFailure" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IsValid]"
+                      name="IsValid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdDescription]"
+                      length="480"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdDescription]"
+                      name="IdDescription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[STARTDT]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[STARTDT]"
+                      name="STARTDT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[ENDDT]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[ENDDT]"
+                      name="ENDDT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[ID]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[ID]"
+                      name="ID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      length="255"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdNumber]"
+                      name="IdNumber"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdIssueLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdIssueLocation]"
+                      length="200"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdIssueLocation]"
+                      name="IdIssueLocation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdExpiryDt]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[IdExpiryDt]"
+                      name="IdExpiryDt"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[RecordTimeStamp]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[RecordTimeStamp]"
+                      name="RecordTimeStamp"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[Last_Update_TS]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[Last_Update_TS]"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].Columns[Last_Update_TS]"
+                      name="Last_Update_TS"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      name="SourceCustomerId" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SourceSystemName" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IsValid]"
+                      dataType="bool"
+                      name="IsValid" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="480"
+                      name="IdDescription" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      name="STARTDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      name="ENDDT" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[ID]"
+                      dataType="i8"
+                      name="ID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="IdNumber" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdIssueLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="IdIssueLocation" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      name="IdExpiryDt" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      name="RecordTimeStamp" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output].ExternalColumns[Last_Update_TS]"
+                      dataType="dbTimeStamp"
+                      name="Last_Update_TS" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      dataType="i8"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ID]"
+                      name="ID" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      codePage="1252"
+                      dataType="str"
+                      length="300"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[SourceCustomerId]"
+                      name="SourceCustomerId" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      dataType="bool"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IsValid]"
+                      name="IsValid" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[Last_Update_TS]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[Last_Update_TS]"
+                      name="Last_Update_TS" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdNumber]"
+                      name="IdNumber" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdDescription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="480"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdDescription]"
+                      name="IdDescription" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdIssueLocation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdIssueLocation]"
+                      name="IdIssueLocation" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdExpiryDt]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[IdExpiryDt]"
+                      name="IdExpiryDt" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[STARTDT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[STARTDT]"
+                      name="STARTDT" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ENDDT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ENDDT]"
+                      name="ENDDT" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[RecordTimeStamp]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[RecordTimeStamp]"
+                      name="RecordTimeStamp" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[SourceSystemName]"
+                      name="SourceSystemName" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Img_Id\Row_Count"
+              componentClassID="Microsoft.RowCount"
+              contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+              name="Row_Count">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable to hold the row count."
+                  name="VariableName">User::RowCount</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Img_Id\Row_Count.Inputs[Row Count Input 1]"
+                  hasSideEffects="true"
+                  name="Row Count Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\Row_Count.Outputs[Row Count Output 1]"
+                  name="Row Count Output 1"
+                  synchronousInputId="Package\DFT_TB_Src_Img_Id\Row_Count.Inputs[Row Count Input 1]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_TB_Src_Img_Id\TS"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="TS"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DFT_TB_Src_Img_Id\TS.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DFT_TB_Src_Img_Id\TS.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DFT_TB_Src_Img_Id\TS.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_TB_Src_Img_Id.Paths[Derived Column Output]"
+              endId="Package\DFT_TB_Src_Img_Id\Row_Count.Inputs[Row Count Input 1]"
+              name="Derived Column Output"
+              startId="Package\DFT_TB_Src_Img_Id\TS.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Img_Id.Paths[OLE DB Destination Error Output]"
+              endId="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount.Inputs[Row Count Input 1]"
+              name="OLE DB Destination Error Output"
+              startId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Outputs[OLE DB Destination Error Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Img_Id.Paths[OLE DB Source Output]"
+              endId="Package\DFT_TB_Src_Img_Id\TS.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DFT_TB_Src_Img_Id.Paths[Row Count Output 1]"
+              endId="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id.Inputs[OLE DB Destination Input]"
+              name="Row Count Output 1"
+              startId="Package\DFT_TB_Src_Img_Id\Row_Count.Outputs[Row Count Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXPR_Change_Status"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{e70f2a7e-3a49-4a5f-b096-8e5f79cdfd8d}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXPR_Change_Status"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="@[User::Status]=&quot;COMPLETED&quot;" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_SessionEnd"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{5a1d79cc-79c2-4aee-a29d-197bc03d1087}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_SessionEnd"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_SessionEnd.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{96c5b166-d03f-4926-87b6-8e3813c41cd5}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{4fba5aeb-9c91-4428-bb1c-f2a809b97749}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A2B325C-6E8E-4650-87E2-7FD05893D41D}"
+          SQLTask:SqlStatementSource="UPDATE [dbo].ETL_RUN SET [SESSION_STATUS_UPD_TS] = GETDATE() , [SESSION_STATUS]=? WHERE ETL_SESSION_ID=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Audit"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{b08e6597-2d5d-4838-abd2-bfd32055b3ce}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Audit"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Audit.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{55de03bd-f989-4007-9f97-9f4c82fa2ddc}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{68f34d00-9682-4d68-be89-6c65e0b04738}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A2B325C-6E8E-4650-87E2-7FD05893D41D}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_Session_Log] ([ETL_SESSION_ID] , [SOURCE_SYSTEM] , [SOURCE_KEY_COUNT] , [ETL_SOURCE_REJ_COUNT] ) VALUES (?,?,?,?)" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::SessionId"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SourceSystem"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::RowCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="3"
+            SQLTask:DtsVariableName="User::TotalErrorCount"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_Session_Start"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{16bab2fc-d57d-4753-bdcb-494a5c573de4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_Session_Start"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:EventHandlers>
+        <DTS:EventHandler
+          DTS:refId="Package\SQL_Session_Start.EventHandlers[OnError]"
+          DTS:CreationName="OnError"
+          DTS:DTSID="{f7985e7c-1caa-49f5-9077-83a726bb589d}"
+          DTS:EventID="0"
+          DTS:EventName="OnError"
+          DTS:LocaleID="-1">
+          <DTS:Variables>
+            <DTS:Variable
+              DTS:CreationName=""
+              DTS:Description="The propagate property of the event"
+              DTS:DTSID="{86c0b21a-19de-4eef-8800-7b0a4211fcba}"
+              DTS:IncludeInDebugDump="6789"
+              DTS:Namespace="System"
+              DTS:ObjectName="Propagate">
+              <DTS:VariableValue
+                DTS:DataType="11">-1</DTS:VariableValue>
+            </DTS:Variable>
+          </DTS:Variables>
+          <DTS:Executables />
+        </DTS:EventHandler>
+      </DTS:EventHandlers>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A2B325C-6E8E-4650-87E2-7FD05893D41D}"
+          SQLTask:SqlStatementSource="INSERT INTO [dbo].[ETL_RUN]&#xA;(&#xA; [ETL_EXECUTION_ID]&#xA; ,[ETL_JOB_NAME]&#xA; ,[SESSION_STATUS]&#xA; ,[SESSION_START_TS]&#xA;)&#xA;VALUES&#xA;(?,?,?,GETDATE())&#xA;&#xA;&#xA;SELECT @@IDENTITY AS SessionId"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="SessionId"
+            SQLTask:DtsVariableName="User::SessionId" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="System::ServerExecutionID"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="System::PackageName"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="2"
+            SQLTask:DtsVariableName="User::Status"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="129"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3a80d72b-2e0f-4310-b660-d8fbba0a2357}"
+      DTS:From="Package\SQL_Session_Start"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT_TB_Src_Img_Id" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{1aaeec79-d884-4267-9185-01ffb177b214}"
+      DTS:From="Package\DFT_TB_Src_Img_Id"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXPR_Change_Status" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{4e4110ee-c35b-442b-880f-ff49642dff68}"
+      DTS:From="Package\EXPR_Change_Status"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\SQL_SessionEnd" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{01bc1e4f-b8b9-4ded-a7bf-1b6652f5d057}"
+      DTS:From="Package\SQL_SessionEnd"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SQL_Session_Audit" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177,42"
+          Id="Package\DFT_TB_Src_Img_Id"
+          TopLeft="68,146" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\EXPR_Change_Status"
+          TopLeft="98,249" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SQL_Session_Audit"
+          TopLeft="65,519" />
+        <NodeLayout
+          Size="167,42"
+          Id="Package\SQL_Session_Start"
+          TopLeft="60,60" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SQL_SessionEnd"
+          TopLeft="77,422" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="143.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="13,44"
+              Start="0,0"
+              End="13,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="9,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="9,22"
+                    Point2="13,22"
+                    Point3="13,26" />
+                  <mssgle:LineSegment
+                    End="13,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="156.5,188">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="31.5,61"
+              Start="0,0"
+              End="31.5,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26.5"
+                    Point2="0,30.5"
+                    Point3="4,30.5" />
+                  <mssgle:LineSegment
+                    End="27.5,30.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="27.5,30.5"
+                    Point2="31.5,30.5"
+                    Point3="31.5,34.5" />
+                  <mssgle:LineSegment
+                    End="31.5,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="188,291">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-32.5,131"
+              Start="0,0"
+              End="-32.5,123.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,61.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,61.5"
+                    Point2="0,65.5"
+                    Point3="-4,65.5" />
+                  <mssgle:LineSegment
+                    End="-28.5,65.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-28.5,65.5"
+                    Point2="-32.5,65.5"
+                    Point3="-32.5,69.5" />
+                  <mssgle:LineSegment
+                    End="-32.5,123.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="152.5,464">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,55"
+              Start="0,0"
+              End="0,47.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,47.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_TB_Src_Img_Id">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\DFT_TB_Src_Img_Id\Row_Count"
+          TopLeft="65,256" />
+        <NodeLayout
+          Size="91,42"
+          Id="Package\DFT_TB_Src_Img_Id\TS"
+          TopLeft="91,150" />
+        <NodeLayout
+          Size="215,42"
+          Id="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id"
+          TopLeft="12,24" />
+        <NodeLayout
+          Size="249,42"
+          Id="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id"
+          TopLeft="15,365" />
+        <NodeLayout
+          Size="183,42"
+          Id="Package\DFT_TB_Src_Img_Id\CNT_InsertErrorCount"
+          TopLeft="67,528" />
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.Paths[Derived Column Output]"
+          TopLeft="134,192">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,64"
+              Start="0,0"
+              End="0,56.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.Paths[Row Count Output 1]"
+          TopLeft="131.5,298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8,67"
+              Start="0,0"
+              End="8,59.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5"
+                    Point2="0,33.5"
+                    Point3="4,33.5" />
+                  <mssgle:LineSegment
+                    End="4,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4,33.5"
+                    Point2="8,33.5"
+                    Point3="8,37.5" />
+                  <mssgle:LineSegment
+                    End="8,59.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.Paths[OLE DB Source Output]"
+          TopLeft="119.5,66">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="17,84"
+              Start="0,0"
+              End="17,76.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,38"
+                    Point2="0,42"
+                    Point3="4,42" />
+                  <mssgle:LineSegment
+                    End="13,42" />
+                  <mssgle:CubicBezierSegment
+                    Point1="13,42"
+                    Point2="17,42"
+                    Point3="17,46" />
+                  <mssgle:LineSegment
+                    End="17,76.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.Paths[OLE DB Destination Error Output]"
+          TopLeft="139.5,407">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="19,121"
+              Start="0,0"
+              End="19,113.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,56.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,56.5"
+                    Point2="0,60.5"
+                    Point3="4,60.5" />
+                  <mssgle:LineSegment
+                    End="15,60.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="15,60.5"
+                    Point2="19,60.5"
+                    Point3="19,64.5" />
+                  <mssgle:LineSegment
+                    End="19,113.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-63.70890625,65.5,146.4178125,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <DtsEventHandler
+    design-time-name="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="180,42"
+          Id="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\EXPR_Change_Status"
+          TopLeft="113,98" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_Insert_OnError"
+          TopLeft="553,97" />
+        <NodeLayout
+          Size="184,42"
+          Id="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError]\SQL_UpdateSessionID"
+          TopLeft="344,98" />
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint]"
+          TopLeft="293,119">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="51,0"
+              Start="0,0"
+              End="43.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="43.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DFT_TB_Src_Img_Id.EventHandlers[OnError].PrecedenceConstraints[Constraint 1]"
+          TopLeft="528,118.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="25,0"
+              Start="0,0"
+              End="17.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="17.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_TB_Src_Img_Id\OLEDB_DST_TB_Insert_Src_Img_Id">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_TB_Src_Img_Id\OLEDB_SRC_TB_Src_Img_Id">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
